@@ -278,7 +278,7 @@
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--card-border);
       transition: all 0.3s ease;
-      display: none; /* Wird nach erfolgreichem Login angezeigt */
+      display: none;
     }
     
     .portal-container.visible {
@@ -484,6 +484,46 @@
       transition: color 0.3s ease;
     }
 
+    /* ===== Theme Toggle Button - AUSSERHALB DES CONTAINERS ===== */
+    .theme-toggle-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--fg);
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      z-index: 9998;
+    }
+    
+    .theme-toggle-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--button-bg);
+    }
+    
+    .theme-toggle-button:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+    
+    /* Button nur sichtbar wenn Portal angezeigt wird */
+    .theme-toggle-button.portal-visible {
+      display: flex;
+    }
+    
+    .theme-toggle-button:not(.portal-visible) {
+      display: none;
+    }
+
     /* App Container */
     .app-container {
       display: none;
@@ -571,36 +611,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Theme Toggle Button */
-    .theme-toggle-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 9998;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--fg);
-      font-size: 22px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow-md);
-      transition: all 0.3s ease;
-    }
-    
-    .theme-toggle-button:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .theme-toggle-button:active {
-      transform: translateY(-1px) scale(0.98);
-    }
-
     /* Logout Button im Portal */
     .logout-button {
       background: transparent;
@@ -648,16 +658,16 @@
         padding: 20px;
         width: 90%;
       }
+      .login-modal {
+        padding: 20px;
+        width: 95%;
+      }
       .theme-toggle-button {
         bottom: 15px;
         right: 15px;
         width: 45px;
         height: 45px;
         font-size: 20px;
-      }
-      .login-modal {
-        padding: 20px;
-        width: 95%;
       }
     }
     
@@ -717,7 +727,8 @@
     </div>
   </div>
 
-  <!-- Theme Toggle Button -->
+  <!-- Theme Toggle Button - AUSSERHALB DES PORTAL CONTAINERS -->
+  <!-- Wird nur eingeblendet wenn Portal sichtbar ist -->
   <button class="theme-toggle-button" id="themeToggleButton" aria-label="Dark/Light Mode umschalten">🌓</button>
 
   <!-- Portal Startseite -->
@@ -848,6 +859,7 @@
     function initLogin() {
       const loginOverlay = document.getElementById('loginOverlay');
       const portalPage = document.getElementById('portalPage');
+      const themeButton = document.getElementById('themeToggleButton');
       const passwordInput = document.getElementById('passwordInput');
       const loginButton = document.getElementById('loginButton');
       const errorMessage = document.getElementById('errorMessage');
@@ -859,9 +871,11 @@
       if (isLoggedIn) {
         loginOverlay.style.display = 'none';
         portalPage.classList.add('visible');
+        themeButton.classList.add('portal-visible'); // Theme-Button einblenden
       } else {
         loginOverlay.style.display = 'flex';
         portalPage.classList.remove('visible');
+        themeButton.classList.remove('portal-visible'); // Theme-Button ausblenden
       }
       
       // Login Button Event
@@ -873,6 +887,7 @@
           sessionStorage.setItem(SESSION_KEY, 'true');
           loginOverlay.style.display = 'none';
           portalPage.classList.add('visible');
+          themeButton.classList.add('portal-visible'); // Theme-Button einblenden
           passwordInput.value = '';
           errorMessage.textContent = '';
         } else {
@@ -896,6 +911,7 @@
         sessionStorage.removeItem('activeApp');
         loginOverlay.style.display = 'flex';
         portalPage.classList.remove('visible');
+        themeButton.classList.remove('portal-visible'); // Theme-Button ausblenden
         passwordInput.value = '';
         passwordInput.focus();
         errorMessage.textContent = '';
@@ -934,6 +950,7 @@
       }
       
       document.getElementById('portalPage').classList.remove('visible');
+      document.getElementById('themeToggleButton').classList.remove('portal-visible'); // Theme-Button ausblenden
       
       document.querySelectorAll('.app-container').forEach(container => {
         container.classList.remove('active');
@@ -953,6 +970,7 @@
       // Prüfen ob eingeloggt
       if (sessionStorage.getItem(SESSION_KEY) === 'true') {
         document.getElementById('portalPage').classList.add('visible');
+        document.getElementById('themeToggleButton').classList.add('portal-visible'); // Theme-Button wieder einblenden
       }
       
       document.querySelectorAll('.app-container').forEach(container => {
@@ -1017,8 +1035,11 @@
       // Login initialisieren
       initLogin();
       
-      // Theme Toggle Button
-      document.getElementById('themeToggleButton').addEventListener('click', toggleTheme);
+      // Theme Toggle Button Event
+      const themeToggleButton = document.getElementById('themeToggleButton');
+      if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', toggleTheme);
+      }
       
       // App Navigation
       const activeApp = sessionStorage.getItem('activeApp');
@@ -1056,7 +1077,8 @@
             goBackToPortal();
           }
         }
-        if (e.key === 't' || e.key === 'T') {
+        // T-Taste für Theme Toggle NUR wenn Portal sichtbar
+        if ((e.key === 't' || e.key === 'T') && document.getElementById('portalPage').classList.contains('visible')) {
           toggleTheme();
         }
       });
