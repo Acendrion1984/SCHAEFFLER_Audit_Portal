@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -889,11 +889,10 @@
       <div class="logo-container">
         <img class="schaeffler-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Schaeffler_logo.svg" alt="Schaeffler Logo">
       </div>
-      <h1>ZfP-Portal</h1>
     </header>
 
     <div class="hero" aria-label="Anwendungsauswahl">
-      <h2>Bitte Anwendung auswählen</h2>
+      <h2>ZfP Portal - Schweinfurt</h2>
     </div>
 
     <div class="tiles">
@@ -973,20 +972,20 @@
         <!-- Badge entfernt -->
       </div>
 
-      <!-- ZfP Erfahrung - Cyan (weiterhin i.A. mit Toast) -->
+      <!-- ZfP Erfahrung - Cyan -->
       <div class="tile experience" id="experienceAppBtn">
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">💡</div>
-          <div class="tile-title">ZfP Erfahrung</div>
+          <div class="tile-title">ZfP Probleme</div>
         </div>
         <div class="tile-meta">
           <div class="meta-row">
             <span class="meta-dot" aria-hidden="true"></span>
-            <span>Mentoring Phase</span>
+            <span>Anlagenprobleme</span>
           </div>
           <div class="meta-row">
             <span class="meta-dot" aria-hidden="true"></span>
-            <span>dauerhafte Tätigkeit</span>
+            <span>Prüfaufgaben</span>
           </div>
         </div>
         <!-- Badge entfernt -->
@@ -1234,10 +1233,10 @@
       
       iframe.onerror = function() {
         loading.innerHTML = `
-          <div style="color: #e74c3c; font-size: 24px; margin-bottom: 10px;">❌</div>
+          <div style="color: #e74c3c; font-size: 22px; margin-bottom: 8px;">❌</div>
           <p>App konnte nicht geladen werden</p>
           <p style="font-size: 0.9em; color: var(--muted);">Bitte prüfe die Internetverbindung</p>
-          <button onclick="goBackToPortal()" style="margin-top: 15px; padding: 8px 16px; background: var(--button-bg); color: var(--button-text); border: none; border-radius: 4px; cursor: pointer;">
+          <button onclick="goBackToPortal()" style="margin-top: 10px; padding: 8px 12px; background: var(--button-bg); color: var(--button-text); border: none; border-radius: 2px; cursor: pointer;">
             zum Portal
           </button>
         `;
