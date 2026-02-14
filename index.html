@@ -524,28 +524,6 @@
       margin-right: 4px;
     }
 
-    /* Under Construction Badge - jetzt unten */
-    .construction-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      background: var(--construction-yellow);
-      color: var(--construction-black);
-      font-size: 0.7em;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 2;
-      border: 1px solid rgba(255,255,255,0.3);
-      margin-top: 6px;
-      margin-left: 60px; /* Alignment mit Icon */
-      width: fit-content;
-    }
-
     /* Toast Notification */
     .toast-notification {
       position: fixed;
@@ -787,11 +765,6 @@
         font-size: 0.8em;
         gap: 2px;
       }
-      .construction-badge {
-        margin-left: 48px;
-        font-size: 0.65em;
-        padding: 3px 8px;
-      }
       .tiles { 
         grid-template-columns: 1fr; 
         gap: 8px; 
@@ -852,11 +825,6 @@
       .tile-meta { 
         padding-left: 42px; 
         font-size: 0.75em;
-      }
-      .construction-badge {
-        margin-left: 42px;
-        font-size: 0.6em;
-        padding: 2px 6px;
       }
       h1 { 
         font-size: 1.5em; 
@@ -971,7 +939,7 @@
         </div>
       </div>
 
-      <!-- ZfP Schulungen - Blau -->
+      <!-- ZfP Schulungen - Blau (Jetzt aktiv) -->
       <div class="tile training" id="trainingAppBtn">
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">📚</div>
@@ -983,10 +951,10 @@
             <span>Prüfwerkerschulungen</span>
           </div>
         </div>
-        <div class="construction-badge">🚧 i. A.</div>
+        <!-- Badge entfernt -->
       </div>
 
-      <!-- ZfP Prüfmittelüberwachung - Rot -->
+      <!-- ZfP Prüfmittelüberwachung - Rot (weiterhin i.A. mit Toast) -->
       <div class="tile equipment" id="equipmentAppBtn">
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">🔧</div>
@@ -1002,10 +970,10 @@
             <span>ZfP Zubehör</span>
           </div>
         </div>
-        <div class="construction-badge">🚧 i. A.</div>
+        <!-- Badge entfernt -->
       </div>
 
-      <!-- ZfP Erfahrung - Cyan -->
+      <!-- ZfP Erfahrung - Cyan (weiterhin i.A. mit Toast) -->
       <div class="tile experience" id="experienceAppBtn">
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">💡</div>
@@ -1021,7 +989,7 @@
             <span>dauerhafte Tätigkeit</span>
           </div>
         </div>
-        <div class="construction-badge">🚧 i. A.</div>
+        <!-- Badge entfernt -->
       </div>
     </div>
 
@@ -1078,13 +1046,28 @@
     </iframe>
   </div>
 
+  <!-- Container für ZfP Schulungen App (IFRAME) - NEU HINZUGEFÜGT -->
+  <div id="trainingAppContainer" class="app-container">
+    <button class="back-button" onclick="goBackToPortal()">← Portal</button>
+    <div id="trainingLoading" class="loading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>ZfP Schulungen werden geladen...</p>
+    </div>
+    <iframe id="trainingIframe" class="app-iframe"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals"
+            allow="clipboard-write; clipboard-read; fullscreen"
+            allowfullscreen
+            title="ZfP Schulungen">
+    </iframe>
+  </div>
+
   <script>
     // ===== KONFIGURATION =====
     const APP_URLS = {
       review: 'https://acendrion1984.github.io/ZfP_Review/',
       operator: 'https://acendrion1984.github.io/ZfP/',
       pri: 'https://acendrion1984.github.io/SelfAudit/',
-      training: 'https://acendrion1984.github.io/Schulungen/',
+      training: 'https://acendrion1984.github.io/Schulungen/',  // Aktivierte URL
       equipment: '#', // Platzhalter für zukünftige URL
       experience: '#' // Platzhalter für zukünftige URL
     };
@@ -1205,9 +1188,11 @@
         container.classList.remove('active');
       });
       
+      // Alle Iframes zurücksetzen
       document.getElementById('reviewIframe').src = 'about:blank';
       document.getElementById('operatorIframe').src = 'about:blank';
       document.getElementById('priIframe').src = 'about:blank';
+      document.getElementById('trainingIframe').src = 'about:blank'; // Neuer Iframe
       
       sessionStorage.removeItem('activeApp');
       
@@ -1229,6 +1214,10 @@
         iframe = document.getElementById('priIframe');
         loading = document.getElementById('priLoading');
         url = APP_URLS.pri;
+      } else if (appId === 'trainingAppContainer') { // NEU: Training App
+        iframe = document.getElementById('trainingIframe');
+        loading = document.getElementById('trainingLoading');
+        url = APP_URLS.training;
       } else {
         return;
       }
@@ -1296,22 +1285,24 @@
         }
       });
       
-      // NEUE APPS - Under Construction Toast
+      // ZfP Schulungen App - Jetzt aktiv (lädt Inhalt)
       document.getElementById('trainingAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
-          showConstructionToast();
+          showApp('trainingAppContainer');  // Aktiv: Öffnet die App
         }
       });
       
+      // Prüfmittelüberwachung - weiterhin Toast (Under Construction)
       document.getElementById('equipmentAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
-          showConstructionToast();
+          showConstructionToast();  // Nur Toast, keine Navigation
         }
       });
       
+      // ZfP Erfahrung - weiterhin Toast (Under Construction)
       document.getElementById('experienceAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
-          showConstructionToast();
+          showConstructionToast();  // Nur Toast, keine Navigation
         }
       });
       
@@ -1349,4 +1340,3 @@
   </script>
 </body>
 </html>
-
