@@ -323,7 +323,7 @@
       display: block;
     }
 
-    /* Header mit Logo */
+    /* Header mit zentriertem Logo - ohne Subtitle */
     header {
       display: flex;
       flex-direction: column;
@@ -332,23 +332,19 @@
       padding-bottom: 12px;
       border-bottom: 2px solid var(--header-border);
       transition: border-color 0.3s ease;
-    }
-    
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      margin-bottom: 10px;
+      position: relative;
     }
     
     .logo-container {
       display: flex;
+      justify-content: center;
       align-items: center;
+      width: 100%;
+      margin-bottom: 8px;
     }
     
     .schaeffler-logo {
-      height: 40px;
+      height: 35px;
       width: auto;
       filter: brightness(1);
       transition: filter 0.3s ease;
@@ -357,27 +353,15 @@
     body.dark-mode .schaeffler-logo {
       filter: brightness(1.2);
     }
-    
-    .logout-btn-container {
-      margin-left: auto;
-    }
 
     h1 {
       color: var(--header-text);
       font-size: 2.2em;
       font-weight: 800;
       letter-spacing: .2px;
-      margin: 5px 0 0;
+      margin: 0;
       transition: color 0.3s ease;
       text-align: center;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 1em;
-      font-weight: 600;
-      transition: color 0.3s ease;
-      margin-top: 5px;
     }
 
     /* ===== Hero ===== */
@@ -540,22 +524,26 @@
       margin-right: 4px;
     }
 
-    /* Under Construction Badge */
+    /* Under Construction Badge - jetzt unten */
     .construction-badge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
       background: var(--construction-yellow);
       color: var(--construction-black);
       font-size: 0.7em;
       font-weight: 800;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 20px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 2;
       border: 1px solid rgba(255,255,255,0.3);
+      margin-top: 6px;
+      margin-left: 60px; /* Alignment mit Icon */
+      width: fit-content;
     }
 
     /* Toast Notification */
@@ -612,6 +600,14 @@
       font-size: .9em;
       transition: border-color 0.3s ease, color 0.3s ease;
     }
+    
+    .company-info {
+      font-weight: 600;
+      color: var(--header-text);
+      margin-bottom: 4px;
+      font-size: 1.1em;
+    }
+    
     .creator-info { 
       font-weight: 700; 
       color: var(--creator-color); 
@@ -751,24 +747,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Logout Button */
-    .logout-button {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.85em;
-      margin-left: 10px;
-      transition: all 0.2s ease;
-    }
-    
-    .logout-button:hover {
-      background: var(--border);
-      color: var(--fg);
-    }
-
     /* Responsive - Mobil optimiert */
     @media (max-width: 1100px) {
       .tiles { 
@@ -809,6 +787,11 @@
         font-size: 0.8em;
         gap: 2px;
       }
+      .construction-badge {
+        margin-left: 48px;
+        font-size: 0.65em;
+        padding: 3px 8px;
+      }
       .tiles { 
         grid-template-columns: 1fr; 
         gap: 8px; 
@@ -848,6 +831,9 @@
         height: 4px;
         margin-right: 2px;
       }
+      .company-info {
+        font-size: 1em;
+      }
     }
     
     @media (max-width: 480px) {
@@ -867,6 +853,11 @@
         padding-left: 42px; 
         font-size: 0.75em;
       }
+      .construction-badge {
+        margin-left: 42px;
+        font-size: 0.6em;
+        padding: 2px 6px;
+      }
       h1 { 
         font-size: 1.5em; 
       }
@@ -877,6 +868,9 @@
         width: 35px;
         height: 35px;
         font-size: 16px;
+      }
+      .company-info {
+        font-size: 0.95em;
       }
     }
   </style>
@@ -924,16 +918,10 @@
   <!-- Portal Startseite -->
   <div id="portalPage" class="portal-container">
     <header>
-      <div class="header-top">
-        <div class="logo-container">
-          <img class="schaeffler-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Schaeffler_logo.svg" alt="Schaeffler Logo">
-        </div>
-        <div class="logout-btn-container">
-          <button id="logoutBtn" class="logout-button">Abmelden</button>
-        </div>
+      <div class="logo-container">
+        <img class="schaeffler-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Schaeffler_logo.svg" alt="Schaeffler Logo">
       </div>
       <h1>ZfP-Portal</h1>
-      <div class="subtitle">Schaeffler Technologies AG & Co. KG</div>
     </header>
 
     <div class="hero" aria-label="Anwendungsauswahl">
@@ -985,7 +973,6 @@
 
       <!-- ZfP Schulungen - Blau -->
       <div class="tile training" id="trainingAppBtn">
-        <div class="construction-badge">🚧 i. A.</div>
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">📚</div>
           <div class="tile-title">ZfP Schulungen</div>
@@ -996,11 +983,11 @@
             <span>Prüfwerkerschulungen</span>
           </div>
         </div>
+        <div class="construction-badge">🚧 i. A.</div>
       </div>
 
       <!-- ZfP Prüfmittelüberwachung - Rot -->
       <div class="tile equipment" id="equipmentAppBtn">
-        <div class="construction-badge">🚧 i. A.</div>
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">🔧</div>
           <div class="tile-title">ZfP Prüfmittelüberwachung</div>
@@ -1015,11 +1002,11 @@
             <span>ZfP Zubehör</span>
           </div>
         </div>
+        <div class="construction-badge">🚧 i. A.</div>
       </div>
 
       <!-- ZfP Erfahrung - Cyan -->
       <div class="tile experience" id="experienceAppBtn">
-        <div class="construction-badge">🚧 i. A.</div>
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">💡</div>
           <div class="tile-title">ZfP Erfahrung</div>
@@ -1034,12 +1021,14 @@
             <span>dauerhafte Tätigkeit</span>
           </div>
         </div>
+        <div class="construction-badge">🚧 i. A.</div>
       </div>
     </div>
 
     <footer>
+      <div class="company-info">Schaeffler Technologies AG & Co. KG</div>
       <div class="version-info">Version 00, 09.02.2026</div>
-      <div>ZfP-Portal Schaeffler Schweinfurt</div>
+      <div>ZfP-Portal Schweinfurt</div>
       <div class="creator-info">Ersteller: Häusner Daniel, WI/SW2-PQT</div>
     </footer>
   </div>
@@ -1122,7 +1111,6 @@
       const passwordInput = document.getElementById('passwordInput');
       const loginButton = document.getElementById('loginButton');
       const errorMessage = document.getElementById('errorMessage');
-      const logoutBtn = document.getElementById('logoutBtn');
       
       // Prüfen ob bereits eingeloggt
       const isLoggedIn = sessionStorage.getItem(SESSION_KEY) === 'true';
@@ -1160,23 +1148,6 @@
         if (e.key === 'Enter') {
           loginButton.click();
         }
-      });
-      
-      // Logout Button
-      logoutBtn.addEventListener('click', function() {
-        sessionStorage.removeItem(SESSION_KEY);
-        sessionStorage.removeItem('activeApp');
-        loginOverlay.style.display = 'flex';
-        portalPage.classList.remove('visible');
-        themeButton.classList.remove('portal-visible');
-        passwordInput.value = '';
-        passwordInput.focus();
-        errorMessage.textContent = '';
-        
-        // Alle Iframes zurücksetzen
-        document.getElementById('reviewIframe').src = 'about:blank';
-        document.getElementById('operatorIframe').src = 'about:blank';
-        document.getElementById('priIframe').src = 'about:blank';
       });
     }
 
