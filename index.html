@@ -43,8 +43,8 @@
       --equipment-start: #E74C3C; /* Rot */
       --equipment-end: #B03A2E;
       
-      --experience-start: #F1C40F; /* Gelb */
-      --experience-end: #D4AC0D;
+      --experience-start: #00BCD4; /* Cyan */
+      --experience-end: #00A0B0;
       
       --tile-fg: #fff;
       --tile-icon-bg: rgba(255,255,255,0.18);
@@ -100,23 +100,23 @@
       --hero-text: #ffffff;
       
       /* Tiles - 6 unterschiedliche Farben für Dark Mode */
-      --review-start: #F39C12;  /* Orange bleibt */
+      --review-start: #F39C12;
       --review-end: #E67E22;
       
-      --operator-start: #27AE60; /* Grün bleibt */
+      --operator-start: #27AE60;
       --operator-end: #229954;
       
-      --pri-start: #9B59B6;     /* Helles Lila */
+      --pri-start: #9B59B6;
       --pri-end: #8E44AD;
       
-      --training-start: #3498DB; /* Blau bleibt */
+      --training-start: #3498DB;
       --training-end: #2980B9;
       
-      --equipment-start: #E74C3C; /* Rot bleibt */
+      --equipment-start: #E74C3C;
       --equipment-end: #B03A2E;
       
-      --experience-start: #F1C40F; /* Gelb bleibt */
-      --experience-end: #D4AC0D;
+      --experience-start: #00BCD4; /* Cyan bleibt leuchtend */
+      --experience-end: #00A0B0;
       
       --tile-fg: #ffffff;
       --tile-icon-bg: rgba(255,255,255,0.15);
@@ -355,7 +355,7 @@
     }
     
     body.dark-mode .schaeffler-logo {
-      filter: brightness(1.2) invert(0.1);
+      filter: brightness(1.2);
     }
     
     .logout-btn-container {
@@ -793,65 +793,39 @@
         height: 30px;
       }
       .tile { 
-        padding: 12px 10px; 
-        min-height: 115px;
+        padding: 10px 8px; 
+        min-height: 100px;
       }
       .tile-icon { 
-        width: 40px; 
-        height: 40px; 
-        font-size: 20px; 
+        width: 36px; 
+        height: 36px; 
+        font-size: 18px; 
       }
       .tile-title {
-        font-size: 1.1em;
+        font-size: 1em;
       }
       .tile-meta { 
-        padding-left: 52px; 
-        font-size: 0.85em;
+        padding-left: 48px; 
+        font-size: 0.8em;
+        gap: 2px;
       }
       .tiles { 
         grid-template-columns: 1fr; 
-        gap: 10px; 
+        gap: 8px; 
       }
-      .back-button {
-        padding: 8px 14px;
-        font-size: 0.9em;
-        top: 10px;
-        left: 10px;
-      }
-      .loading {
-        padding: 20px;
-        width: 90%;
-      }
-      .login-modal {
-        padding: 20px;
-        width: 95%;
-      }
-      .theme-toggle-button {
-        bottom: 15px;
-        right: 15px;
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
-      }
-      .toast-notification {
-        min-width: 260px;
-        padding: 14px 20px;
-        font-size: 0.95em;
-        bottom: 20px;
-      }
-    }
-    
-    @media (max-width: 480px) {
       .back-button {
         padding: 6px 12px;
         font-size: 0.85em;
+        top: 8px;
+        left: 8px;
       }
       .loading {
         padding: 15px;
-        width: 95%;
+        width: 90%;
       }
-      .tile {
-        min-height: 105px;
+      .login-modal {
+        padding: 15px;
+        width: 95%;
       }
       .theme-toggle-button {
         bottom: 10px;
@@ -864,12 +838,45 @@
         min-width: 240px;
         padding: 12px 16px;
         font-size: 0.9em;
+        bottom: 15px;
+      }
+      .meta-row {
+        gap: 4px;
+      }
+      .meta-dot {
+        width: 4px;
+        height: 4px;
+        margin-right: 2px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .tile { 
+        padding: 8px 6px; 
+        min-height: 90px;
+      }
+      .tile-icon { 
+        width: 32px; 
+        height: 32px; 
+        font-size: 16px; 
+      }
+      .tile-title {
+        font-size: 0.95em;
+      }
+      .tile-meta { 
+        padding-left: 42px; 
+        font-size: 0.75em;
       }
       h1 { 
-        font-size: 1.6em; 
+        font-size: 1.5em; 
       }
       .schaeffler-logo {
         height: 25px;
+      }
+      .theme-toggle-button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
       }
     }
   </style>
@@ -919,7 +926,7 @@
     <header>
       <div class="header-top">
         <div class="logo-container">
-          <img class="schaeffler-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/96/Schaeffler_logo.svg" alt="Schaeffler Logo">
+          <img class="schaeffler-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Schaeffler_logo.svg" alt="Schaeffler Logo">
         </div>
         <div class="logout-btn-container">
           <button id="logoutBtn" class="logout-button">Abmelden</button>
@@ -1010,7 +1017,7 @@
         </div>
       </div>
 
-      <!-- ZfP Erfahrung - Gelb -->
+      <!-- ZfP Erfahrung - Cyan -->
       <div class="tile experience" id="experienceAppBtn">
         <div class="construction-badge">🚧 i. A.</div>
         <div class="tile-top">
