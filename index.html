@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZfP-Portal - Schaeffler</title>
+
+  <style>
+    /* ===== Design-Variablen für Light Mode ===== */
+    :root {
+      --radius: 14px;
+      --shadow-sm: 0 6px 18px rgba(0,0,0,0.08);
+      --shadow-md: 0 12px 26px rgba(0,0,0,0.12);
+      --shadow-lg: 0 20px 42px rgba(0,0,0,0.16);
+      
+      /* Light Mode Colors */
+      --bg: #f7f8fa;
+      --fg: #2b2f33;
+      --muted: #5f6b73;
+      --border: #e5e9ef;
+      --card-bg: #ffffff;
+      --card-border: rgba(0,0,0,0.08);
+      
+      /* Hero */
+      --hero-start: rgba(52,152,219,0.08);
+      --hero-end: rgba(46,204,113,0.06);
+      --hero-border: rgba(52,152,219,0.18);
+      --hero-text: #2c3e50;
+      
+      /* Tiles - 6 unterschiedliche Farben */
+      --review-start: #F39C12;  /* Orange */
+      --review-end: #E67E22;
+      
+      --operator-start: #27AE60; /* Grün */
+      --operator-end: #229954;
+      
+      --pri-start: #8E44AD;     /* Lila */
+      --pri-end: #7D3C98;
+      
+      --training-start: #3498DB; /* Blau */
+      --training-end: #2980B9;
+      
+      --equipment-start: #E74C3C; /* Rot */
+      --equipment-end: #B03A2E;
+      
+      --experience-start: #00BCD4; /* Cyan */
+      --experience-end: #00A0B0;
+      
+      --tile-fg: #fff;
+      --tile-icon-bg: rgba(255,255,255,0.18);
+      --tile-icon-border: rgba(255,255,255,0.22);
+      
+      /* Button */
+      --button-bg: #3498db;
+      --button-hover: #2980b9;
+      --button-text: #ffffff;
+      --button-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      
+      /* Loading */
+      --loading-bg: #ffffff;
+      --loading-border: #f3f3f3;
+      --loading-spinner: #3498db;
+      
+      /* Header */
+      --header-border: #2c3e50;
+      --header-text: #2c3e50;
+      
+      /* Creator Info */
+      --creator-color: #2c3e50;
+      
+      /* Login Modal */
+      --modal-overlay: rgba(0,0,0,0.5);
+      --modal-bg: #ffffff;
+      --modal-border: #e5e9ef;
+      --input-border: #d1d5db;
+      --input-focus: #3498db;
+      --error-color: #e74c3c;
+
+      /* Toast Notification */
+      --toast-bg: #2c3e50;
+      --toast-text: #ffffff;
+      --toast-border: #34495e;
+      --construction-yellow: #f1c40f;
+      --construction-black: #2c3e50;
+    }
+
+    /* ===== Dark Mode Variablen ===== */
+    body.dark-mode {
+      --bg: #121212;
+      --fg: #e0e0e0;
+      --muted: #c2c7cc;
+      --border: rgba(255,255,255,0.08);
+      --card-bg: #1e1e1e;
+      --card-border: rgba(255,255,255,0.12);
+      
+      /* Hero */
+      --hero-start: rgba(52,152,219,0.10);
+      --hero-end: rgba(46,204,113,0.08);
+      --hero-border: rgba(52,152,219,0.22);
+      --hero-text: #ffffff;
+      
+      /* Tiles - 6 unterschiedliche Farben für Dark Mode */
+      --review-start: #F39C12;
+      --review-end: #E67E22;
+      
+      --operator-start: #27AE60;
+      --operator-end: #229954;
+      
+      --pri-start: #9B59B6;
+      --pri-end: #8E44AD;
+      
+      --training-start: #3498DB;
+      --training-end: #2980B9;
+      
+      --equipment-start: #E74C3C;
+      --equipment-end: #B03A2E;
+      
+      --experience-start: #00BCD4; /* Cyan bleibt leuchtend */
+      --experience-end: #00A0B0;
+      
+      --tile-fg: #ffffff;
+      --tile-icon-bg: rgba(255,255,255,0.15);
+      --tile-icon-border: rgba(255,255,255,0.20);
+      
+      /* Button */
+      --button-bg: #3498db;
+      --button-hover: #2980b9;
+      --button-text: #ffffff;
+      --button-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      
+      /* Loading */
+      --loading-bg: #1e1e1e;
+      --loading-border: #2d2d2d;
+      --loading-spinner: #3498db;
+      
+      /* Header */
+      --header-border: #444444;
+      --header-text: #ffffff;
+      
+      /* Creator Info */
+      --creator-color: #ffffff;
+      
+      /* Shadows */
+      --shadow-sm: 0 6px 18px rgba(0,0,0,0.25);
+      --shadow-md: 0 12px 26px rgba(0,0,0,0.35);
+      --shadow-lg: 0 20px 42px rgba(0,0,0,0.45);
+      
+      /* Login Modal */
+      --modal-overlay: rgba(0,0,0,0.7);
+      --modal-bg: #1e1e1e;
+      --modal-border: rgba(255,255,255,0.12);
+      --input-border: #444444;
+      --input-focus: #3498db;
+      --error-color: #e74c3c;
+
+      /* Toast Notification */
+      --toast-bg: #34495e;
+      --toast-text: #ecf0f1;
+      --toast-border: #2c3e50;
+      --construction-yellow: #f39c12;
+      --construction-black: #2c3e50;
+    }
+
+    /* ===== Basis ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body{ 
+      height: 100%; 
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    body{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    /* ===== Login Modal ===== */
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--modal-overlay);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      backdrop-filter: blur(5px);
+    }
+    
+    .login-modal {
+      background: var(--modal-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      max-width: 400px;
+      width: 90%;
+      border: 1px solid var(--modal-border);
+      animation: slideIn 0.3s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .login-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .login-header h2 {
+      color: var(--header-text);
+      font-size: 1.8em;
+      margin-bottom: 8px;
+    }
+    
+    .login-header p {
+      color: var(--muted);
+      font-size: 0.95em;
+    }
+    
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .password-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .password-field label {
+      color: var(--fg);
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+    
+    .password-field input {
+      padding: 12px 16px;
+      border: 2px solid var(--input-border);
+      border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--fg);
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+    
+    .password-field input:focus {
+      outline: none;
+      border-color: var(--input-focus);
+      box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+    }
+    
+    .login-button {
+      background: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+    
+    .login-button:hover {
+      background: var(--button-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--button-shadow);
+    }
+    
+    .login-button:active {
+      transform: translateY(0);
+    }
+    
+    .error-message {
+      color: var(--error-color);
+      font-size: 0.9em;
+      text-align: center;
+      min-height: 20px;
+    }
+    
+    .login-footer {
+      margin-top: 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85em;
+    }
+
+    /* Portal Container */
+    .portal-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      background: var(--card-bg);
+      color: var(--fg);
+      padding: 18px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+      display: none;
+    }
+    
+    .portal-container.visible {
+      display: block;
+    }
+
+    /* Header mit zentriertem Logo - ohne Subtitle */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--header-border);
+      transition: border-color 0.3s ease;
+      position: relative;
+    }
+    
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    
+    .schaeffler-logo {
+      height: 35px;
+      width: auto;
+      filter: brightness(1);
+      transition: filter 0.3s ease;
+    }
+    
+    body.dark-mode .schaeffler-logo {
+      filter: brightness(1.2);
+    }
+
+    h1 {
+      color: var(--header-text);
+      font-size: 2.2em;
+      font-weight: 800;
+      letter-spacing: .2px;
+      margin: 0;
+      transition: color 0.3s ease;
+      text-align: center;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      margin: 14px 0 18px;
+      border-radius: var(--radius);
+      padding: 16px;
+      background: linear-gradient(180deg, var(--hero-start), var(--hero-end));
+      border: 1px solid var(--hero-border);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .hero h2 {
+      text-align:center;
+      color: var(--hero-text);
+      font-size: 1.2em;
+      font-weight: 800;
+      margin-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+    .hero p {
+      text-align:center;
+      color: var(--muted);
+      font-size: .95em;
+      transition: color 0.3s ease;
+    }
+
+    /* ===== Tiles ===== */
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .tile {
+      text-decoration:none;
+      display:flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px 14px;
+      border-radius: var(--radius);
+      min-height: 130px;
+      color: var(--tile-fg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--tile-icon-border);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color 0.3s ease;
+      will-change: transform;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .tile.review {
+      background: linear-gradient(135deg, var(--review-start) 0%, var(--review-end) 110%);
+    }
+    .tile.operator {
+      background: linear-gradient(135deg, var(--operator-start) 0%, var(--operator-end) 110%);
+    }
+    .tile.pri {
+      background: linear-gradient(135deg, var(--pri-start) 0%, var(--pri-end) 110%);
+    }
+    .tile.training {
+      background: linear-gradient(135deg, var(--training-start) 0%, var(--training-end) 110%);
+    }
+    .tile.equipment {
+      background: linear-gradient(135deg, var(--equipment-start) 0%, var(--equipment-end) 110%);
+    }
+    .tile.experience {
+      background: linear-gradient(135deg, var(--experience-start) 0%, var(--experience-end) 110%);
+    }
+
+    .tile::before {
+      content:'';
+      position:absolute;
+      width: 300px; height: 200px;
+      left: -160px; top: -180px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.34), transparent 60%);
+      pointer-events:none;
+    }
+    
+    .tile::after {
+      content:'';
+      position:absolute;
+      inset: -60% -60%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 40%, rgba(255,255,255,0.05));
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+
+    .tile:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      filter: saturate(1.03);
+    }
+    .tile:active {
+      transform: translateY(-1px) scale(0.995);
+      box-shadow: var(--shadow-md);
+    }
+    .tile:focus-visible {
+      outline: 3px solid rgba(255,255,255,0.8);
+      outline-offset: 2px;
+    }
+
+    .tile-top {
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .tile-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 24px;
+      background: var(--tile-icon-bg);
+      border: 1px solid var(--tile-icon-border);
+      flex: 0 0 auto;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .tile-title {
+      font-weight: 900;
+      font-size: 1.2em;
+      line-height: 1.15;
+      letter-spacing: .2px;
+    }
+
+    .tile-meta {
+      font-size: .9em;
+      color: rgba(255,255,255,0.95);
+      display:flex;
+      flex-direction: column;
+      gap: 4px;
+      flex-grow: 1;
+      justify-content: center;
+      padding-top: 2px;
+      padding-left: 60px; /* Alignment mit Icon */
+    }
+    
+    .meta-row {
+      display:flex;
+      gap: 6px;
+      align-items: center;
+      line-height: 1.2;
+      color: rgba(255,255,255,0.95);
+      font-weight: normal;
+    }
+    
+    .meta-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      flex: 0 0 auto;
+      margin-right: 4px;
+    }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--toast-bg);
+      color: var(--toast-text);
+      padding: 16px 24px;
+      border-radius: 50px;
+      box-shadow: var(--shadow-lg);
+      border: 2px solid var(--construction-yellow);
+      z-index: 10000;
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      min-width: 280px;
+      justify-content: center;
+    }
+    
+    .toast-notification.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .toast-icon {
+      font-size: 24px;
+      background: var(--construction-yellow);
+      color: var(--construction-black);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .toast-message {
+      flex-grow: 1;
+    }
+
+    /* Footer */
+    footer {
+      text-align:center;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .9em;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .company-info {
+      font-weight: 600;
+      color: var(--header-text);
+      margin-bottom: 4px;
+      font-size: 1.1em;
+    }
+    
+    .creator-info { 
+      font-weight: 700; 
+      color: var(--creator-color); 
+      margin-top: 4px;
+      transition: color 0.3s ease;
+    }
+    .version-info { 
+      margin-top: 2px; 
+      font-size: .85em; 
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+
+    /* ===== Theme Toggle Button ===== */
+    .theme-toggle-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      color: var(--fg);
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      z-index: 9998;
+    }
+    
+    .theme-toggle-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--button-bg);
+    }
+    
+    .theme-toggle-button:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+    
+    .theme-toggle-button.portal-visible {
+      display: flex;
+    }
+    
+    .theme-toggle-button:not(.portal-visible) {
+      display: none;
+    }
+
+    /* App Container */
+    .app-container {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: var(--bg);
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+    }
+    
+    .app-container.active {
+      display: block;
+    }
+    
+    /* Zurück-Button */
+    .back-button {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.95em;
+      z-index: 1001;
+      box-shadow: var(--button-shadow);
+      transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .back-button:hover {
+      background: var(--button-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .back-button:active {
+      transform: translateY(0);
+    }
+    
+    /* Iframe Styles */
+    .app-iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+      display: block;
+    }
+
+    /* Loading Indicator */
+    .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: var(--loading-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--loading-border);
+      border-top: 5px solid var(--loading-spinner);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+      transition: border-color 0.3s ease;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive - Mobil optimiert */
+    @media (max-width: 1100px) {
+      .tiles { 
+        grid-template-columns: repeat(2, minmax(240px, 1fr)); 
+      }
+    }
+    
+    @media (max-width: 768px) {
+      body { 
+        padding: 8px; 
+        font-size: 14px; 
+      }
+      .portal-container { 
+        padding: 12px; 
+        margin: 5px auto;
+        max-width: 100%;
+      }
+      h1 { 
+        font-size: 1.8em; 
+      }
+      .schaeffler-logo {
+        height: 30px;
+      }
+      .tile { 
+        padding: 10px 8px; 
+        min-height: 100px;
+      }
+      .tile-icon { 
+        width: 36px; 
+        height: 36px; 
+        font-size: 18px; 
+      }
+      .tile-title {
+        font-size: 1em;
+      }
+      .tile-meta { 
+        padding-left: 48px; 
+        font-size: 0.8em;
+        gap: 2px;
+      }
+      .tiles { 
+        grid-template-columns: 1fr; 
+        gap: 8px; 
+      }
+      .back-button {
+        padding: 6px 12px;
+        font-size: 0.85em;
+        top: 8px;
+        left: 8px;
+      }
+      .loading {
+        padding: 15px;
+        width: 90%;
+      }
+      .login-modal {
+        padding: 15px;
+        width: 95%;
+      }
+      .theme-toggle-button {
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+      .toast-notification {
+        min-width: 240px;
+        padding: 12px 16px;
+        font-size: 0.9em;
+        bottom: 15px;
+      }
+      .meta-row {
+        gap: 4px;
+      }
+      .meta-dot {
+        width: 4px;
+        height: 4px;
+        margin-right: 2px;
+      }
+      .company-info {
+        font-size: 1em;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .tile { 
+        padding: 8px 6px; 
+        min-height: 90px;
+      }
+      .tile-icon { 
+        width: 32px; 
+        height: 32px; 
+        font-size: 16px; 
+      }
+      .tile-title {
+        font-size: 0.95em;
+      }
+      .tile-meta { 
+        padding-left: 42px; 
+        font-size: 0.75em;
+      }
+      h1 { 
+        font-size: 1.5em; 
+      }
+      .schaeffler-logo {
+        height: 25px;
+      }
+      .theme-toggle-button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+      .company-info {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Login Modal -->
+  <div id="loginOverlay" class="login-overlay">
+    <div class="login-modal">
+      <div class="login-header">
+        <h2>ZfP-Portal</h2>
+        <p>Schaeffler Technologies AG & Co. KG</p>
+        <p style="margin-top: 10px; font-weight: 600;">Passwortgeschützter Bereich</p>
+      </div>
+      
+      <div class="login-form">
+        <div class="password-field">
+          <label for="passwordInput">Passwort</label>
+          <input type="password" id="passwordInput" placeholder="Passwort eingeben" autofocus>
+        </div>
+        
+        <div id="errorMessage" class="error-message"></div>
+        
+        <button id="loginButton" class="login-button">
+          Portal öffnen
+        </button>
+      </div>
+      
+      <div class="login-footer">
+        <p>Nur für autorisierte Benutzer</p>
+        <p style="margin-top: 5px;">Version 00, 09.02.2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle-button" id="themeToggleButton" aria-label="Dark/Light Mode umschalten">🌓</button>
+
+  <!-- Toast Notification für "Under Construction" (wird nicht mehr verwendet, aber für Kompatibilität behalten) -->
+  <div id="constructionToast" class="toast-notification">
+    <div class="toast-icon">🚧</div>
+    <div class="toast-message">Diese Anwendung befindet sich im Aufbau</div>
+  </div>
+
+  <!-- Portal Startseite -->
+  <div id="portalPage" class="portal-container">
+    <header>
+      <div class="logo-container">
+        <img class="schaeffler-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Schaeffler_logo.svg" alt="Schaeffler Logo">
+      </div>
+    </header>
+
+    <div class="hero" aria-label="Anwendungsauswahl">
+      <h2>ZfP Portal - Schweinfurt</h2>
+    </div>
+
+    <div class="tiles">
+      <!-- Review Audit - Orange -->
+      <div class="tile review" id="reviewAppBtn">
+        <div class="tile-top">
+          <div class="tile-icon" aria-hidden="true">📋</div>
+          <div class="tile-title">ZfP Review Audit</div>
+        </div>
+        <div class="tile-meta">
+          <div class="meta-row">
+            <span class="meta-dot" aria-hidden="true"></span>
+            <span>IN QP 29005 – ZfP Review Audits</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Operator Audit - Grün -->
+      <div class="tile operator" id="operatorAppBtn">
+        <div class="tile-top">
+          <div class="tile-icon" aria-hidden="true">👨‍🔬</div>
+          <div class="tile-title">Personalqualifikation</div>
+        </div>
+        <div class="tile-meta">
+          <div class="meta-row">
+            <span class="meta-dot" aria-hidden="true"></span>
+            <span>INFSW 17008 – NDT Personal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRI Self Audit - Lila -->
+      <div class="tile pri" id="priAppBtn">
+        <div class="tile-top">
+          <div class="tile-icon" aria-hidden="true">🔍</div>
+          <div class="tile-title">TPG/PRI Self Audit</div>
+        </div>
+        <div class="tile-meta">
+          <div class="meta-row">
+            <span class="meta-dot" aria-hidden="true"></span>
+            <span>TPG-AC7114</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZfP Schulungen - Blau -->
+      <div class="tile training" id="trainingAppBtn">
+        <div class="tile-top">
+          <div class="tile-icon" aria-hidden="true">📚</div>
+          <div class="tile-title">ZfP Schulungen</div>
+        </div>
+        <div class="tile-meta">
+          <div class="meta-row">
+            <span class="meta-dot" aria-hidden="true"></span>
+            <span>Prüfwerkerschulungen</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZfP Prüfmittelüberwachung - Rot (JAKTIV) -->
+      <div class="tile equipment" id="equipmentAppBtn">
+        <div class="tile-top">
+          <div class="tile-icon" aria-hidden="true">🔧</div>
+          <div class="tile-title">ZfP Prüfmittelüberwachung</div>
+        </div>
+        <div class="tile-meta">
+          <div class="meta-row">
+            <span class="meta-dot" aria-hidden="true"></span>
+            <span>Prüfanlagen</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-dot" aria-hidden="true"></span>
+            <span>ZfP Zubehör</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZfP Probleme - Cyan (AKTIV) -->
+      <div class="tile experience" id="experienceAppBtn">
+        <div class="tile-top">
+          <div class="tile-icon" aria-hidden="true">💡</div>
+          <div class="tile-title">ZfP Probleme</div>
+        </div>
+        <div class="tile-meta">
+          <div class="meta-row">
+            <span class="meta-dot" aria-hidden="true"></span>
+            <span>Anlagenprobleme</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-dot" aria-hidden="true"></span>
+            <span>Prüfaufgaben</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="company-info">Schaeffler Technologies AG & Co. KG</div>
+      <div class="version-info">Version 00, 09.02.2026</div>
+      <div>ZfP-Portal Schweinfurt</div>
+      <div class="creator-info">Ersteller: Häusner Daniel, WI/SW2-PQT</div>
+    </footer>
+  </div>
+
+  <!-- Container für Review Audit App -->
+  <div id="reviewAppContainer" class="app-container">
+    <button class="back-button" onclick="goBackToPortal()">← Portal</button>
+    <div id="reviewLoading" class="loading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>Review Audit wird geladen...</p>
+    </div>
+    <iframe id="reviewIframe" class="app-iframe" 
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals"
+            allow="clipboard-write; clipboard-read; fullscreen"
+            allowfullscreen
+            title="ZfP Review Audit">
+    </iframe>
+  </div>
+
+  <!-- Container für Operator Audit App -->
+  <div id="operatorAppContainer" class="app-container">
+    <button class="back-button" onclick="goBackToPortal()">← Portal</button>
+    <div id="operatorLoading" class="loading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>Operator Audit wird geladen...</p>
+    </div>
+    <iframe id="operatorIframe" class="app-iframe"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals"
+            allow="clipboard-write; clipboard-read; fullscreen"
+            allowfullscreen
+            title="ZfP Operator Audit">
+    </iframe>
+  </div>
+
+  <!-- Container für PRI Self Audit App -->
+  <div id="priAppContainer" class="app-container">
+    <button class="back-button" onclick="goBackToPortal()">← Portal</button>
+    <div id="priLoading" class="loading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>PRI Self Audit wird geladen...</p>
+    </div>
+    <iframe id="priIframe" class="app-iframe"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals"
+            allow="clipboard-write; clipboard-read; fullscreen"
+            allowfullscreen
+            title="PRI Self Audit">
+    </iframe>
+  </div>
+
+  <!-- Container für ZfP Schulungen App -->
+  <div id="trainingAppContainer" class="app-container">
+    <button class="back-button" onclick="goBackToPortal()">← Portal</button>
+    <div id="trainingLoading" class="loading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>ZfP Schulungen werden geladen...</p>
+    </div>
+    <iframe id="trainingIframe" class="app-iframe"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals"
+            allow="clipboard-write; clipboard-read; fullscreen"
+            allowfullscreen
+            title="ZfP Schulungen">
+    </iframe>
+  </div>
+
+  <!-- NEU: Container für ZfP Prüfmittelüberwachung App -->
+  <div id="equipmentAppContainer" class="app-container">
+    <button class="back-button" onclick="goBackToPortal()">← Portal</button>
+    <div id="equipmentLoading" class="loading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>Prüfmittelüberwachung wird geladen...</p>
+    </div>
+    <iframe id="equipmentIframe" class="app-iframe"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals"
+            allow="clipboard-write; clipboard-read; fullscreen"
+            allowfullscreen
+            title="ZfP Prüfmittelüberwachung">
+    </iframe>
+  </div>
+
+  <!-- NEU: Container für ZfP Probleme App -->
+  <div id="experienceAppContainer" class="app-container">
+    <button class="back-button" onclick="goBackToPortal()">← Portal</button>
+    <div id="experienceLoading" class="loading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>ZfP Probleme werden geladen...</p>
+    </div>
+    <iframe id="experienceIframe" class="app-iframe"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals"
+            allow="clipboard-write; clipboard-read; fullscreen"
+            allowfullscreen
+            title="ZfP Probleme">
+    </iframe>
+  </div>
+
+  <script>
+    // ===== KONFIGURATION =====
+    const APP_URLS = {
+      review: 'https://acendrion1984.github.io/ZfP_Review/',
+      operator: 'https://acendrion1984.github.io/ZfP/',
+      pri: 'https://acendrion1984.github.io/SelfAudit/',
+      training: 'https://acendrion1984.github.io/Schulungen/',
+      equipment: 'https://acendrion1984.github.io/pmue/',
+      experience: 'https://acendrion1984.github.io/zfp_faelle/'
+    };
+    
+    const CORRECT_PASSWORD = "schaeffler2026";
+    const SESSION_KEY = "zfpportal_loggedin";
+
+    // ===== TOAST FUNKTION (beibehalten für eventuelle zukünftige Verwendung) =====
+    function showConstructionToast() {
+      const toast = document.getElementById('constructionToast');
+      toast.classList.add('show');
+      
+      // Toast nach 3 Sekunden ausblenden
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // ===== LOGIN FUNKTIONEN =====
+    function initLogin() {
+      const loginOverlay = document.getElementById('loginOverlay');
+      const portalPage = document.getElementById('portalPage');
+      const themeButton = document.getElementById('themeToggleButton');
+      const passwordInput = document.getElementById('passwordInput');
+      const loginButton = document.getElementById('loginButton');
+      const errorMessage = document.getElementById('errorMessage');
+      
+      // Prüfen ob bereits eingeloggt
+      const isLoggedIn = sessionStorage.getItem(SESSION_KEY) === 'true';
+      
+      if (isLoggedIn) {
+        loginOverlay.style.display = 'none';
+        portalPage.classList.add('visible');
+        themeButton.classList.add('portal-visible');
+      } else {
+        loginOverlay.style.display = 'flex';
+        portalPage.classList.remove('visible');
+        themeButton.classList.remove('portal-visible');
+      }
+      
+      // Login Button Event
+      loginButton.addEventListener('click', function() {
+        const password = passwordInput.value;
+        
+        if (password === CORRECT_PASSWORD) {
+          sessionStorage.setItem(SESSION_KEY, 'true');
+          loginOverlay.style.display = 'none';
+          portalPage.classList.add('visible');
+          themeButton.classList.add('portal-visible');
+          passwordInput.value = '';
+          errorMessage.textContent = '';
+        } else {
+          errorMessage.textContent = '❌ Falsches Passwort. Bitte versuchen Sie es erneut.';
+          passwordInput.value = '';
+          passwordInput.focus();
+        }
+      });
+      
+      // Enter-Taste im Passwortfeld
+      passwordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          loginButton.click();
+        }
+      });
+    }
+
+    // ===== THEME MANAGEMENT =====
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+    }
+    
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    // ===== APP NAVIGATION =====
+    function showApp(appId) {
+      // Prüfen ob eingeloggt
+      if (sessionStorage.getItem(SESSION_KEY) !== 'true') {
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.getElementById('portalPage').classList.remove('visible');
+        return;
+      }
+      
+      document.getElementById('portalPage').classList.remove('visible');
+      document.getElementById('themeToggleButton').classList.remove('portal-visible');
+      
+      document.querySelectorAll('.app-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      
+      const appContainer = document.getElementById(appId);
+      appContainer.classList.add('active');
+      
+      loadApp(appId);
+      
+      sessionStorage.setItem('activeApp', appId);
+      
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function goBackToPortal() {
+      // Prüfen ob eingeloggt
+      if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+        document.getElementById('portalPage').classList.add('visible');
+        document.getElementById('themeToggleButton').classList.add('portal-visible');
+      }
+      
+      document.querySelectorAll('.app-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      
+      // Alle Iframes zurücksetzen
+      document.getElementById('reviewIframe').src = 'about:blank';
+      document.getElementById('operatorIframe').src = 'about:blank';
+      document.getElementById('priIframe').src = 'about:blank';
+      document.getElementById('trainingIframe').src = 'about:blank';
+      document.getElementById('equipmentIframe').src = 'about:blank';
+      document.getElementById('experienceIframe').src = 'about:blank';
+      
+      sessionStorage.removeItem('activeApp');
+      
+      document.body.style.overflow = 'auto';
+    }
+    
+    function loadApp(appId) {
+      let iframe, loading, url;
+      
+      if (appId === 'reviewAppContainer') {
+        iframe = document.getElementById('reviewIframe');
+        loading = document.getElementById('reviewLoading');
+        url = APP_URLS.review;
+      } else if (appId === 'operatorAppContainer') {
+        iframe = document.getElementById('operatorIframe');
+        loading = document.getElementById('operatorLoading');
+        url = APP_URLS.operator;
+      } else if (appId === 'priAppContainer') {
+        iframe = document.getElementById('priIframe');
+        loading = document.getElementById('priLoading');
+        url = APP_URLS.pri;
+      } else if (appId === 'trainingAppContainer') {
+        iframe = document.getElementById('trainingIframe');
+        loading = document.getElementById('trainingLoading');
+        url = APP_URLS.training;
+      } else if (appId === 'equipmentAppContainer') {
+        iframe = document.getElementById('equipmentIframe');
+        loading = document.getElementById('equipmentLoading');
+        url = APP_URLS.equipment;
+      } else if (appId === 'experienceAppContainer') {
+        iframe = document.getElementById('experienceIframe');
+        loading = document.getElementById('experienceLoading');
+        url = APP_URLS.experience;
+      } else {
+        return;
+      }
+      
+      iframe.style.display = 'none';
+      loading.style.display = 'block';
+      
+      iframe.src = url;
+      
+      iframe.onload = function() {
+        loading.style.display = 'none';
+        iframe.style.display = 'block';
+      };
+      
+      iframe.onerror = function() {
+        loading.innerHTML = `
+          <div style="color: #e74c3c; font-size: 22px; margin-bottom: 8px;">❌</div>
+          <p>App konnte nicht geladen werden</p>
+          <p style="font-size: 0.9em; color: var(--muted);">Bitte prüfe die Internetverbindung</p>
+          <button onclick="goBackToPortal()" style="margin-top: 10px; padding: 8px 12px; background: var(--button-bg); color: var(--button-text); border: none; border-radius: 2px; cursor: pointer;">
+            zum Portal
+          </button>
+        `;
+      };
+    }
+
+    // ===== EVENT LISTENER =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme initialisieren
+      initTheme();
+      
+      // Login initialisieren
+      initLogin();
+      
+      // Theme Toggle Button Event
+      const themeToggleButton = document.getElementById('themeToggleButton');
+      if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', toggleTheme);
+      }
+      
+      // App Navigation für bestehende Apps
+      const activeApp = sessionStorage.getItem('activeApp');
+      if (activeApp && sessionStorage.getItem(SESSION_KEY) === 'true') {
+        showApp(activeApp);
+      }
+      
+      // Review App
+      document.getElementById('reviewAppBtn').addEventListener('click', function() {
+        if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+          showApp('reviewAppContainer');
+        }
+      });
+      
+      // Operator App
+      document.getElementById('operatorAppBtn').addEventListener('click', function() {
+        if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+          showApp('operatorAppContainer');
+        }
+      });
+      
+      // PRI App
+      document.getElementById('priAppBtn').addEventListener('click', function() {
+        if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+          showApp('priAppContainer');
+        }
+      });
+      
+      // ZfP Schulungen App
+      document.getElementById('trainingAppBtn').addEventListener('click', function() {
+        if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+          showApp('trainingAppContainer');
+        }
+      });
+      
+      // ZfP Prüfmittelüberwachung App - JAKTIV
+      document.getElementById('equipmentAppBtn').addEventListener('click', function() {
+        if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+          showApp('equipmentAppContainer');
+        }
+      });
+      
+      // ZfP Probleme App - AKTIV
+      document.getElementById('experienceAppBtn').addEventListener('click', function() {
+        if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+          showApp('experienceAppContainer');
+        }
+      });
+      
+      // Tastatur-Navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const activeApp = document.querySelector('.app-container.active');
+          if (activeApp) {
+            goBackToPortal();
+          }
+        }
+        // T-Taste für Theme Toggle NUR wenn Portal sichtbar
+        if ((e.key === 't' || e.key === 'T') && document.getElementById('portalPage').classList.contains('visible')) {
+          toggleTheme();
+        }
+      });
+      
+      // Browser History Management
+      window.addEventListener('popstate', function(event) {
+        if (document.querySelector('.app-container.active')) {
+          goBackToPortal();
+          history.pushState(null, null, window.location.pathname);
+        }
+      });
+      
+      history.pushState(null, null, window.location.pathname);
+    });
+    
+    // Iframe Communication
+    window.addEventListener('message', function(event) {
+      if (event.data === 'app_closed') {
+        goBackToPortal();
+      }
+    });
+  </script>
+</body>
+</html>
+
