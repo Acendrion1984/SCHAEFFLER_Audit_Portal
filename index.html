@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ZfP-Portal - Schaeffler</title>
   
-    <meta http-equiv="refresh" content="1">
+    <h1>Diese Seite wird nur EINMAL nach 1 Sekunde neu geladen!</h1>
+    
+    <script>
+        // Prüfen, ob die Seite bereits neu geladen wurde
+        if (!sessionStorage.getItem('wurdeSchonGeladen')) {
+            sessionStorage.setItem('wurdeSchonGeladen', 'ja');
+            setTimeout(function() {
+                location.reload();
+            }, 500);
+        }
   
   <style>
     /* ===== Design-Variablen für Light Mode ===== */
@@ -1462,5 +1471,6 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
   </script>
 </body>
 </html>
+
 
 
