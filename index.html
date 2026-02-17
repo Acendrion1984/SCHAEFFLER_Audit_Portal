@@ -1373,6 +1373,90 @@
         goBackToPortal();
       }
     });
+// Am Ende der existing script section einfügen
+
+// ===== SYNCHRONISIERTES THEME MANAGEMENT für PORTAL =====
+const THEME_STORAGE_KEY = 'zfp-theme-preference';
+
+// Theme initialisieren
+function initPortalTheme() {
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+    console.log('Portal Theme initialisiert:', savedTheme);
+}
+
+// Theme umschalten
+function togglePortalTheme() {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem(THEME_STORAGE_KEY, 'light');
+        console.log('Theme auf Light umgeschaltet');
+    } else {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem(THEME_STORAGE_KEY, 'dark');
+        console.log('Theme auf Dark umgeschaltet');
+    }
+    
+    // Andere Tabs benachrichtigen
+    localStorage.setItem('theme_timestamp', Date.now().toString());
+}
+
+// Auf Änderungen von anderen Tabs reagieren
+window.addEventListener('storage', function(e) {
+    if (e.key === THEME_STORAGE_KEY) {
+        const newTheme = e.newValue;
+        console.log('Theme-Änderung von anderem Tab empfangen:', newTheme);
+        
+        if (newTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    }
+});
+
+// Theme-Toggle Button initialisieren
+function initThemeButton() {
+    const themeButton = document.getElementById('themeToggleButton');
+    
+    if (themeButton) {
+        console.log('Theme-Button gefunden');
+        
+        // Alte Event-Listener entfernen
+        themeButton.replaceWith(themeButton.cloneNode(true));
+        
+        // Neuen Button holen
+        const newButton = document.getElementById('themeToggleButton');
+        
+        // Neuen Event-Listener hinzufügen
+        newButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Theme-Button geklickt');
+            togglePortalTheme();
+        });
+    } else {
+        console.error('Theme-Button nicht gefunden!');
+    }
+}
+
+// Alles starten
+document.addEventListener('DOMContentLoaded', function() {
+    initPortalTheme();
+    initThemeButton();
+});
+
+// Falls DOMContentLoaded schon gefeuert wurde
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initPortalTheme();
+    initThemeButton();
+}
   </script>
 </body>
 </html>
