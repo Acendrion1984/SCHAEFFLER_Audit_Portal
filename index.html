@@ -83,7 +83,7 @@
       --construction-yellow: #f1c40f;
       --construction-black: #2c3e50;
 
-      /* Anleitung Button */
+      /* Anleitung Button - nur Icon */
       --anleitung-bg: #2c3e50;
       --anleitung-hover: #34495e;
       --anleitung-text: #ffffff;
@@ -649,7 +649,7 @@
       display: none;
     }
 
-    /* ===== Anleitung Button (unten links im Container) ===== */
+    /* ===== Anleitung Button (nur Icon) ===== */
     .anleitung-button {
       position: absolute;
       bottom: 20px;
@@ -657,105 +657,37 @@
       background: var(--anleitung-bg);
       color: var(--anleitung-text);
       border: none;
-      padding: 10px 20px;
+      width: 50px;
+      height: 50px;
       border-radius: 30px;
-      font-size: 0.95em;
-      font-weight: 600;
+      font-size: 1.5em;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
       box-shadow: var(--shadow-md);
       transition: all 0.3s ease;
       z-index: 100;
       border: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
     }
-    
+
     .anleitung-button:hover {
       background: var(--anleitung-hover);
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.05);
       box-shadow: var(--shadow-lg);
     }
-    
+
     .anleitung-button:active {
-      transform: translateY(0);
+      transform: translateY(0) scale(0.98);
     }
-    
+
+    .anleitung-button:visited {
+      color: var(--anleitung-text);
+    }
+
     .anleitung-icon {
       font-size: 1.2em;
-    }
-    
-    /* Modal für Anleitung */
-    .anleitung-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      backdrop-filter: blur(5px);
-    }
-    
-    .anleitung-modal.active {
-      display: flex;
-    }
-    
-    .anleitung-content {
-      background: var(--modal-bg);
-      color: var(--fg);
-      padding: 30px;
-      border-radius: var(--radius);
-      max-width: 500px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--modal-border);
-      animation: slideIn 0.3s ease;
-    }
-    
-    .anleitung-content h3 {
-      color: var(--header-text);
-      margin-bottom: 15px;
-      font-size: 1.5em;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 10px;
-    }
-    
-    .anleitung-content p {
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-    
-    .anleitung-content ul {
-      margin-left: 20px;
-      margin-bottom: 15px;
-    }
-    
-    .anleitung-content li {
-      margin-bottom: 8px;
-    }
-    
-    .anleitung-close {
-      background: var(--button-bg);
-      color: var(--button-text);
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 1em;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 15px;
-      width: 100%;
-      transition: background 0.2s;
-    }
-    
-    .anleitung-close:hover {
-      background: var(--button-hover);
     }
 
     /* App Container */
@@ -928,13 +860,11 @@
         font-size: 1em;
       }
       .anleitung-button {
-        padding: 8px 16px;
-        font-size: 0.9em;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
         bottom: 15px;
         left: 15px;
-      }
-      .anleitung-content {
-        padding: 20px;
       }
     }
     
@@ -968,6 +898,13 @@
       }
       .company-info {
         font-size: 0.95em;
+      }
+      .anleitung-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+        bottom: 10px;
+        left: 10px;
       }
     }
   </style>
@@ -1006,7 +943,7 @@
   <!-- Theme Toggle Button -->
   <button class="theme-toggle-button" id="themeToggleButton" aria-label="Dark/Light Mode umschalten">🌓</button>
 
-  <!-- Toast Notification für "Under Construction" (wird nicht mehr verwendet, aber für Kompatibilität behalten) -->
+  <!-- Toast Notification für "Under Construction" -->
   <div id="constructionToast" class="toast-notification">
     <div class="toast-icon">🚧</div>
     <div class="toast-message">Diese Anwendung befindet sich im Aufbau</div>
@@ -1081,7 +1018,7 @@
         </div>
       </div>
 
-      <!-- ZfP Prüfmittelüberwachung - Rot (JAKTIV) -->
+      <!-- ZfP Prüfmittelüberwachung - Rot -->
       <div class="tile equipment" id="equipmentAppBtn">
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">🔧</div>
@@ -1099,7 +1036,7 @@
         </div>
       </div>
 
-      <!-- ZfP Probleme - Cyan (AKTIV) -->
+      <!-- ZfP Probleme - Cyan -->
       <div class="tile experience" id="experienceAppBtn">
         <div class="tile-top">
           <div class="tile-icon" aria-hidden="true">💡</div>
@@ -1118,11 +1055,10 @@
       </div>
     </div>
 
-    <!-- Anleitung Button unten links im Container -->
-    <button class="anleitung-button" id="anleitungButton">
+    <!-- Anleitung Button unten links im Container - nur Buch-Symbol, verlinkt auf HTML-Anleitung -->
+    <a href="anleitung.html" target="_blank" rel="noopener noreferrer" class="anleitung-button" id="anleitungButton">
       <span class="anleitung-icon">📖</span>
-      <span>Anleitung</span>
-    </button>
+    </a>
 
     <footer>
       <div class="company-info">Schaeffler Technologies AG & Co. KG</div>
@@ -1130,29 +1066,6 @@
       <div>ZfP-Portal Schweinfurt</div>
       <div class="creator-info">Ersteller: Häusner Daniel, WI/SW2-PQT</div>
     </footer>
-  </div>
-
-  <!-- Anleitung Modal -->
-  <div id="anleitungModal" class="anleitung-modal">
-    <div class="anleitung-content">
-      <h3>📖 ZfP-Portal Anleitung</h3>
-      <p><strong>Willkommen im ZfP-Portal!</strong></p>
-      <p>Dieses Portal bietet Ihnen Zugang zu verschiedenen Anwendungen:</p>
-      <ul>
-        <li><strong>ZfP Review Audit</strong> – Übersicht und Verwaltung von Review Audits</li>
-        <li><strong>Personalqualifikation</strong> – Verwaltung der NDT Personalqualifikationen</li>
-        <li><strong>TPG/PRI Self Audit</strong> – Self-Audit Werkzeuge nach TPG-AC7114</li>
-        <li><strong>ZfP Schulungen</strong> – Prüfwerkerschulungen verwalten</li>
-        <li><strong>ZfP Prüfmittelüberwachung</strong> – Überwachung von Prüfanlagen und Zubehör</li>
-        <li><strong>ZfP Probleme</strong> – Erfassung von Anlagenproblemen und Prüfaufgaben</li>
-      </ul>
-      <p><strong>So nutzen Sie das Portal:</strong></p>
-      <p>Klicken Sie einfach auf eine der Kacheln, um die entsprechende Anwendung zu öffnen. Über den "← Portal" Button gelangen Sie jederzeit zurück zur Hauptübersicht.</p>
-      <p>Mit dem 🌓 Button unten rechts können Sie zwischen hellem und dunklem Design umschalten.</p>
-      <p><strong>Dark Mode:</strong> Wird automatisch gespeichert und auf allen Seiten übernommen.</p>
-      <p style="margin-top: 15px; font-style: italic; color: var(--muted);">Version 00 | 09.02.2026</p>
-      <button class="anleitung-close" id="anleitungClose">Schließen</button>
-    </div>
   </div>
 
   <!-- Container für Review Audit App -->
@@ -1260,12 +1173,11 @@
     const SESSION_KEY = "zfpportal_loggedin";
     const THEME_STORAGE_KEY = 'zfp-theme-preference';
 
-    // ===== TOAST FUNKTION (beibehalten für eventuelle zukünftige Verwendung) =====
+    // ===== TOAST FUNKTION =====
     function showConstructionToast() {
       const toast = document.getElementById('constructionToast');
       toast.classList.add('show');
       
-      // Toast nach 3 Sekunden ausblenden
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3000);
@@ -1280,7 +1192,6 @@
       const loginButton = document.getElementById('loginButton');
       const errorMessage = document.getElementById('errorMessage');
       
-      // Prüfen ob bereits eingeloggt
       const isLoggedIn = sessionStorage.getItem(SESSION_KEY) === 'true';
       
       if (isLoggedIn) {
@@ -1293,7 +1204,6 @@
         themeButton.classList.remove('portal-visible');
       }
       
-      // Login Button Event
       loginButton.addEventListener('click', function() {
         const password = passwordInput.value;
         
@@ -1311,7 +1221,6 @@
         }
       });
       
-      // Enter-Taste im Passwortfeld
       passwordInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
           loginButton.click();
@@ -1340,46 +1249,11 @@
         localStorage.setItem(THEME_STORAGE_KEY, 'dark');
       }
       
-      // Andere Tabs benachrichtigen
       localStorage.setItem('theme_timestamp', Date.now().toString());
-    }
-
-    // ===== ANLEITUNG FUNKTIONEN =====
-    function initAnleitung() {
-      const anleitungButton = document.getElementById('anleitungButton');
-      const anleitungModal = document.getElementById('anleitungModal');
-      const anleitungClose = document.getElementById('anleitungClose');
-      
-      if (anleitungButton) {
-        anleitungButton.addEventListener('click', function() {
-          anleitungModal.classList.add('active');
-        });
-      }
-      
-      if (anleitungClose) {
-        anleitungClose.addEventListener('click', function() {
-          anleitungModal.classList.remove('active');
-        });
-      }
-      
-      // Modal schließen bei Klick außerhalb
-      anleitungModal.addEventListener('click', function(e) {
-        if (e.target === anleitungModal) {
-          anleitungModal.classList.remove('active');
-        }
-      });
-      
-      // ESC-Taste zum Schließen
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && anleitungModal.classList.contains('active')) {
-          anleitungModal.classList.remove('active');
-        }
-      });
     }
 
     // ===== APP NAVIGATION =====
     function showApp(appId) {
-      // Prüfen ob eingeloggt
       if (sessionStorage.getItem(SESSION_KEY) !== 'true') {
         document.getElementById('loginOverlay').style.display = 'flex';
         document.getElementById('portalPage').classList.remove('visible');
@@ -1404,7 +1278,6 @@
     }
     
     function goBackToPortal() {
-      // Prüfen ob eingeloggt
       if (sessionStorage.getItem(SESSION_KEY) === 'true') {
         document.getElementById('portalPage').classList.add('visible');
         document.getElementById('themeToggleButton').classList.add('portal-visible');
@@ -1414,7 +1287,6 @@
         container.classList.remove('active');
       });
       
-      // Alle Iframes zurücksetzen
       document.getElementById('reviewIframe').src = 'about:blank';
       document.getElementById('operatorIframe').src = 'about:blank';
       document.getElementById('priIframe').src = 'about:blank';
@@ -1482,22 +1354,14 @@
 
     // ===== EVENT LISTENER =====
     document.addEventListener('DOMContentLoaded', function() {
-      // Theme initialisieren
       initPortalTheme();
-      
-      // Login initialisieren
       initLogin();
       
-      // Anleitung initialisieren
-      initAnleitung();
-      
-      // Theme Toggle Button Event
       const themeToggleButton = document.getElementById('themeToggleButton');
       if (themeToggleButton) {
         themeToggleButton.addEventListener('click', togglePortalTheme);
       }
       
-      // Auf Theme-Änderungen von anderen Tabs reagieren
       window.addEventListener('storage', function(e) {
         if (e.key === THEME_STORAGE_KEY) {
           const newTheme = e.newValue;
@@ -1509,55 +1373,47 @@
         }
       });
       
-      // App Navigation für bestehende Apps
       const activeApp = sessionStorage.getItem('activeApp');
       if (activeApp && sessionStorage.getItem(SESSION_KEY) === 'true') {
         showApp(activeApp);
       }
       
-      // Review App
       document.getElementById('reviewAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
           showApp('reviewAppContainer');
         }
       });
       
-      // Operator App
       document.getElementById('operatorAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
           showApp('operatorAppContainer');
         }
       });
       
-      // PRI App
       document.getElementById('priAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
           showApp('priAppContainer');
         }
       });
       
-      // ZfP Schulungen App
       document.getElementById('trainingAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
           showApp('trainingAppContainer');
         }
       });
       
-      // ZfP Prüfmittelüberwachung App - JAKTIV
       document.getElementById('equipmentAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
           showApp('equipmentAppContainer');
         }
       });
       
-      // ZfP Probleme App - AKTIV
       document.getElementById('experienceAppBtn').addEventListener('click', function() {
         if (sessionStorage.getItem(SESSION_KEY) === 'true') {
           showApp('experienceAppContainer');
         }
       });
       
-      // Tastatur-Navigation
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           const activeApp = document.querySelector('.app-container.active');
@@ -1565,13 +1421,11 @@
             goBackToPortal();
           }
         }
-        // T-Taste für Theme Toggle NUR wenn Portal sichtbar
         if ((e.key === 't' || e.key === 'T') && document.getElementById('portalPage').classList.contains('visible')) {
           togglePortalTheme();
         }
       });
       
-      // Browser History Management
       window.addEventListener('popstate', function(event) {
         if (document.querySelector('.app-container.active')) {
           goBackToPortal();
@@ -1582,7 +1436,6 @@
       history.pushState(null, null, window.location.pathname);
     });
     
-    // Iframe Communication
     window.addEventListener('message', function(event) {
       if (event.data === 'app_closed') {
         goBackToPortal();
@@ -1591,4 +1444,3 @@
   </script>
 </body>
 </html>
-
