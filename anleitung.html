@@ -91,7 +91,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--in
 
 .cover-strip {
   position: relative; z-index: 2;
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid;
   border-top: 1px solid rgba(255,255,255,.07);
 }
 .strip-item { padding: 22px 30px; border-right: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; gap: 14px; }
@@ -274,11 +274,12 @@ footer strong { color: rgba(255,255,255,.65); }
       <span class="cover-app"><span class="app-dot" style="background:#4ade80;"></span>ZfP Schulungen 2026</span>
       <span class="cover-app"><span class="app-dot" style="background:#60a5fa;"></span>ZfP Operator Audit</span>
       <span class="cover-app"><span class="app-dot" style="background:#c084fc;"></span>ZfP Review Audit</span>
+      <span class="cover-app"><span class="app-dot" style="background:#fb923c;"></span>ZfP Self Audit</span>
       <span class="cover-app"><span class="app-dot" style="background:#f87171;"></span>ZfP Vorfälle &amp; Anlagenprobleme</span>
     </div>
   </div>
 
-  <div class="cover-strip" style="grid-template-columns:repeat(4,1fr);">
+  <div class="cover-strip" style="grid-template-columns:repeat(5,1fr);">
     <div class="strip-item">
       <div class="strip-ico" style="background:#14532d;">📅</div>
       <div><div class="strip-label">ZfP Schulungen 2026</div><div class="strip-sub">Schulungsverwaltung · Anwesenheit · PDF</div></div>
@@ -290,6 +291,10 @@ footer strong { color: rgba(255,255,255,.65); }
     <div class="strip-item">
       <div class="strip-ico" style="background:#2e1e5f;">📋</div>
       <div><div class="strip-label">ZfP Review Audit</div><div class="strip-sub">Bewertungsaudits · Scoring · Berichte</div></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-ico" style="background:#7c4700;">🔍</div>
+      <div><div class="strip-label">ZfP Self Audit</div><div class="strip-sub">Selbst-Audit · PRI-Bericht · Cloud-Speicherung</div></div>
     </div>
     <div class="strip-item" style="border-right:none;">
       <div class="strip-ico" style="background:#7f1d1d;">⚠️</div>
@@ -327,6 +332,20 @@ footer strong { color: rgba(255,255,255,.65); }
         <a href="#op-report"   class="nav-item"><span class="nav-n">B6</span>Bericht &amp; Autorisierung</a>
         <a href="#op-emp"      class="nav-item"><span class="nav-n">B7</span>Mitarbeiterliste</a>
         <a href="#op-certs"    class="nav-item"><span class="nav-n">B8</span>Zertifikate &amp; Zyklen</a>
+        <a href="#op-pw"       class="nav-item"><span class="nav-n">B9</span>Prüfwerker (PW)</a>
+        <a href="#op-sync"     class="nav-item"><span class="nav-n">B10</span>Cloud &amp; Sync</a>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-group">
+        <div class="nav-app-label" style="background:#7c4700;">🔍 Self Audit</div>
+        <a href="#sa-intro"    class="nav-item"><span class="nav-n">D1</span>Überblick</a>
+        <a href="#sa-start"    class="nav-item"><span class="nav-n">D2</span>Verfahren wählen</a>
+        <a href="#sa-overview" class="nav-item"><span class="nav-n">D3</span>Audit-Übersicht</a>
+        <a href="#sa-fragen"   class="nav-item"><span class="nav-n">D4</span>Fragen beantworten</a>
+        <a href="#sa-speichern" class="nav-item"><span class="nav-n">D5</span>Speichern &amp; Export</a>
+        <a href="#sa-sync"     class="nav-item"><span class="nav-n">D6</span>Cloud &amp; Sync</a>
       </div>
 
       <div class="nav-divider"></div>
@@ -549,7 +568,7 @@ footer strong { color: rgba(255,255,255,.65); }
       <div class="chapter-text">
         <div class="chapter-eyebrow">App B · Operateur-Audits</div>
         <div class="chapter-title">ZfP Operator Audit</div>
-        <div class="chapter-sub">Audits durchführen · Mitarbeiterstatus verwalten · Autorisierungen ausstellen</div>
+        <div class="chapter-sub">Audits durchführen · Mitarbeiterstatus verwalten · Zertifikate &amp; Zyklen · Autorisierungen ausstellen</div>
       </div>
     </div>
 
@@ -559,12 +578,16 @@ footer strong { color: rgba(255,255,255,.65); }
         <div class="sec-num">B1</div>
         <div><div class="sec-label">Operator Audit</div><h2 class="sec-title">Überblick &amp; Funktionen</h2></div>
       </div>
-      <p style="font-size:14px;color:var(--muted);max-width:680px;margin-bottom:20px;">Der ZfP Operator Audit dient der strukturierten Überprüfung von ZfP-Operateuren anhand standardisierter Fragenkataloge. Alle Audits werden Mitarbeitern zugeordnet, cloud-synchronisiert und als PDF gedruckt.</p>
+      <p style="font-size:14px;color:var(--muted);max-width:680px;margin-bottom:20px;">Der ZfP Operator Audit dient der strukturierten Überprüfung von ZfP-Operateuren anhand standardisierter Fragenkataloge. Alle Audits werden Mitarbeitern zugeordnet, cloud-synchronisiert und als PDF gedruckt. Die App verwaltet außerdem Zertifikate, Ablaufdaten und Audit-Zyklen für alle Stufen (Level 1/2/3 und Prüfwerker).</p>
       <div class="feat-grid">
         <div class="feat"><span class="feat-ico">📋</span><div class="feat-title">16 standardisierte Fragen</div><div class="feat-text">Pro Verfahren 16 Fragen in 4 Kategorien: Qualifikation, Geräteprüfung, Prüfdurchführung, Dokumentation.</div></div>
-        <div class="feat"><span class="feat-ico">👥</span><div class="feat-title">Mitarbeiterverwaltung</div><div class="feat-text">Zertifikate, Ablaufdaten, Audit-Status und Stempelnummern aller Prüfer verwalten.</div></div>
-        <div class="feat"><span class="feat-ico">📜</span><div class="feat-title">Autorisierungsdokument</div><div class="feat-text">Offizielles Schaeffler-Formular zur Prüferberechtigung direkt aus der App drucken.</div></div>
-        <div class="feat"><span class="feat-ico">🔗</span><div class="feat-title">DGZFP-Verifizierung</div><div class="feat-text">Direktlink zur DGZFP-Zertifikatsverifizierung für jeden Mitarbeiter.</div></div>
+        <div class="feat"><span class="feat-ico">👥</span><div class="feat-title">Mitarbeiterverwaltung</div><div class="feat-text">Zertifikate, Ablaufdaten, Stempelnummern, Geburtsdaten und Sehtestergebnisse aller Prüfer verwalten.</div></div>
+        <div class="feat"><span class="feat-ico">📜</span><div class="feat-title">Autorisierungsdokument</div><div class="feat-text">Offizielles Schaeffler-Formular zur Prüferberechtigung – direkt aus der App drucken oder als PDF speichern.</div></div>
+        <div class="feat"><span class="feat-ico">🔗</span><div class="feat-title">DGZFP-Verifizierung</div><div class="feat-text">Direktlink zur DGZFP-Zertifikatsverifizierung. Name und Ident.-Nr. werden automatisch übergeben.</div></div>
+        <div class="feat"><span class="feat-ico">🔄</span><div class="feat-title">Audit-Zyklen automatisch</div><div class="feat-text">Berechnung des nächsten Audit-Termins je nach Stufe: 1 Jahr (Level 1/2/3), 4 Jahre (PW), 5 Jahre (NE 2/3).</div></div>
+        <div class="feat"><span class="feat-ico">📋</span><div class="feat-title">Prüfwerker-Praxisnachweis</div><div class="feat-text">Separates Modul zur Dokumentation der 160 Stunden betreuter Praxisphase für Prüfwerker (PW).</div></div>
+        <div class="feat"><span class="feat-ico">🌐</span><div class="feat-title">Cloud-Synchronisation</div><div class="feat-text">Automatischer Hintergrund-Sync alle 60 Sekunden. Mehrere Geräte bleiben stets aktuell.</div></div>
+        <div class="feat"><span class="feat-ico">📊</span><div class="feat-title">Statistik-Dashboard</div><div class="feat-text">Zertifikats- und Audit-Statistiken (gültig / läuft ab / abgelaufen) in der Mitarbeiterliste – dynamisch gefiltert.</div></div>
       </div>
     </section>
 
@@ -576,12 +599,12 @@ footer strong { color: rgba(255,255,255,.65); }
       </div>
       <div class="tbl-wrap" style="margin-bottom:20px;">
         <table class="t">
-          <thead><tr><th>Kachel</th><th>Verfahren</th><th>Norm</th><th>Fragen</th></tr></thead>
+          <thead><tr><th>Kachel</th><th>Verfahren</th><th>Kurzname</th><th>Norm / Anweisung</th><th>Fragen</th></tr></thead>
           <tbody>
-            <tr><td><span class="badge b-blue">⚡ ET</span></td><td>Wirbelstromprüfung</td><td>S285066 · INFSW_17005</td><td style="font-family:'JetBrains Mono',monospace;">4×4 = 16</td></tr>
-            <tr><td><span class="badge b-red">🧲 MT</span></td><td>Magnetpulverprüfung</td><td>DIN EN ISO 9934 · S24000-8</td><td style="font-family:'JetBrains Mono',monospace;">4×4 = 16</td></tr>
-            <tr><td><span class="badge b-grn">🧪 NE</span></td><td>Nital-Ätzen</td><td>Lokale Arbeitsanweisung</td><td style="font-family:'JetBrains Mono',monospace;">4×4 = 16</td></tr>
-            <tr><td><span class="badge b-pur">📡 UT</span></td><td>Ultraschallprüfung</td><td>DIN EN ISO 22232 · S231202-5</td><td style="font-family:'JetBrains Mono',monospace;">4×4 = 16</td></tr>
+            <tr><td><span class="badge b-blue">⚡ ET</span></td><td>Wirbelstromprüfung</td><td>Wirbelstrom</td><td>S285066 · INFSW_17005</td><td style="font-family:'JetBrains Mono',monospace;">4×4 = 16</td></tr>
+            <tr><td><span class="badge b-red">🧲 MT</span></td><td>Magnetpulverprüfung</td><td>Magnetpulver</td><td>DIN EN ISO 9934 · S24000-8 · INFSW01044</td><td style="font-family:'JetBrains Mono',monospace;">4×4 = 16</td></tr>
+            <tr><td><span class="badge b-grn">🧪 NE</span></td><td>Nital-Ätzen</td><td>Nital</td><td>Lokale Arbeitsanweisung</td><td style="font-family:'JetBrains Mono',monospace;">4×4 = 16</td></tr>
+            <tr><td><span class="badge b-pur">📡 UT</span></td><td>Ultraschallprüfung</td><td>Ultraschall</td><td>DIN EN ISO 22232 · S231202-5</td><td style="font-family:'JetBrains Mono',monospace;">4×4 = 16</td></tr>
           </tbody>
         </table>
       </div>
@@ -597,7 +620,14 @@ footer strong { color: rgba(255,255,255,.65); }
           <div class="step-num">02</div>
           <div class="step-content">
             <div class="step-title">Cloud-Status prüfen</div>
-            <div class="step-text">Unter dem Titel erscheint <strong>🌐 Cloud verbunden</strong> (grün) oder <strong>❌ Cloud nicht verbunden</strong> (rot). Daten können auch offline erfasst und später synchronisiert werden.</div>
+            <div class="step-text">Unter dem Titel erscheint <strong>🌐 Cloud verbunden</strong> (grün) oder <strong>❌ Cloud nicht verbunden</strong> (rot). Daten können auch offline erfasst und später automatisch synchronisiert werden.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Mitarbeiterliste aufrufen (👥-Button)</div>
+            <div class="step-text">Der goldene 👥-Button unterhalb der Kacheln öffnet die vollständige Mitarbeiterliste mit Audit-Status, Zertifikaten und allen Verwaltungsfunktionen.</div>
           </div>
         </div>
       </div>
@@ -613,20 +643,20 @@ footer strong { color: rgba(255,255,255,.65); }
         <table class="t">
           <thead><tr><th>Gruppe</th><th>Felder</th><th>Hinweis</th></tr></thead>
           <tbody>
-            <tr><td><strong>Operator</strong></td><td>Name, Mitarbeiter-Nr., Zertifikat, Abteilung</td><td>⚠️ Mitarbeiter-Nr. muss mit Mitarbeiterliste übereinstimmen!</td></tr>
+            <tr><td><strong>Operator</strong></td><td>Name, Mitarbeiter-Nr., Zertifikat, Abteilung</td><td>⚠️ Mitarbeiter-Nr. muss exakt mit Mitarbeiterliste übereinstimmen!</td></tr>
             <tr><td><strong>Auditor (Level II)</strong></td><td>Name, Abteilung, Zertifikat, Telefon</td><td>Person, die das Audit durchführt</td></tr>
             <tr><td><strong>Supervisor (Level III)</strong></td><td>Name, Abteilung, Zertifikat, Telefon</td><td>Freigabe-Person gemäß INFSW17008</td></tr>
-            <tr><td><strong>Prüfungsdetails</strong></td><td>Teiletype, Externe Norm, S-Standard, Arbeitsanweisung</td><td>Prüfprotokoll-Nr. wird automatisch generiert</td></tr>
+            <tr><td><strong>Prüfungsdetails</strong></td><td>Teiletype, Externe Norm, S-Standard, Arbeitsanweisung</td><td>Prüfprotokoll-Nr. wird automatisch generiert (Format: PR-YYYYMMDD-XXXXXX)</td></tr>
           </tbody>
         </table>
       </div>
       <div class="box box-warn" style="margin-top:14px;">
         <div class="box-ico">⚠️</div>
-        <div><div class="box-title">Kritisch: Mitarbeiter-Nummer</div><div class="box-text">Die <strong>Mitarbeiter-Nr.</strong> im Operator-Feld muss exakt mit der Personalnummer in der Mitarbeiterliste übereinstimmen (Groß-/Kleinschreibung egal). Nur dann kann das Audit dem Mitarbeiter zugeordnet und gespeichert werden.</div></div>
+        <div><div class="box-title">Kritisch: Mitarbeiter-Nummer</div><div class="box-text">Die <strong>Mitarbeiter-Nr.</strong> im Operator-Feld muss exakt mit der Personalnummer in der Mitarbeiterliste übereinstimmen (Groß-/Kleinschreibung wird ignoriert). Nur dann kann das Audit dem Mitarbeiter zugeordnet, in die Statistik aufgenommen und in der Cloud gespeichert werden. Bei Nichtübereinstimmung erscheint eine Fehlermeldung beim Speichern.</div></div>
       </div>
       <div class="box box-info" style="margin-top:10px;">
         <div class="box-ico">📱</div>
-        <div><div class="box-title">Mobile: Kopfdaten standardmäßig eingeklappt</div><div class="box-text">Auf Smartphones sind Kopfdaten eingeklappt. Über <strong>„Einblenden"</strong> öffnen. Änderungen werden automatisch zwischen Desktop- und Mobilansicht synchronisiert.</div></div>
+        <div><div class="box-title">Mobile: Kopfdaten standardmäßig eingeklappt</div><div class="box-text">Auf Smartphones sind Kopfdaten eingeklappt. Über <strong>„Einblenden"</strong> öffnen. Änderungen werden automatisch zwischen Desktop- und Mobilansicht synchronisiert – alle Felder existieren doppelt (einmal für Desktop, einmal für Mobile) und werden stets gespiegelt.</div></div>
       </div>
     </section>
 
@@ -641,41 +671,52 @@ footer strong { color: rgba(255,255,255,.65); }
           <div class="step-num">01</div>
           <div class="step-content">
             <div class="step-title">Sektion aufklappen (Desktop)</div>
-            <div class="step-text">Klick auf den grauen Sektionskopf klappt die Fragen auf. Alle 4 Sektionen können gleichzeitig geöffnet sein. Der Pfeil dreht sich bei geöffneter Sektion.</div>
+            <div class="step-text">Klick auf den grauen Sektionskopf klappt die Fragen auf. Alle 4 Sektionen können gleichzeitig geöffnet sein. Der Pfeil dreht sich bei geöffneter Sektion. Jede Sektion enthält genau 4 Fragen.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
           <div class="step-content">
             <div class="step-title">Frage mit OK / Nicht OK bewerten</div>
-            <div class="step-text">Klick auf <strong>✅ OK</strong> oder <strong>❌ Nicht OK</strong>. Der Fragehintergrund färbt sich grün/rot. Jede Bewertung wird sofort lokal gespeichert.</div>
+            <div class="step-text">Klick auf <strong>✅ OK</strong> oder <strong>❌ Nicht OK</strong>. Der Fragehintergrund färbt sich grün/rot. Jede Bewertung wird sofort automatisch lokal gespeichert – kein manueller Speichern-Schritt nötig.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">03</div>
           <div class="step-content">
-            <div class="step-title">Kommentar &amp; Bilder (optional)</div>
-            <div class="step-text">Pro Frage ein Textfeld für Anmerkungen. Auf Desktop: Bilder hochladen (max. 5 MB, automatisch auf 1200×800 px komprimiert). Bilder erscheinen im gedruckten Bericht.</div>
+            <div class="step-title">Kommentar &amp; Bilder hinzufügen (optional)</div>
+            <div class="step-text">Pro Frage ein Textfeld für Anmerkungen. Auf Desktop zusätzlich: Bilder hochladen (max. 5 MB pro Bild, mehrere möglich). Die App komprimiert Bilder automatisch auf max. 1200×800 px / JPEG 80 %. Bilder erscheinen im gedruckten Prüfbericht.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">04</div>
           <div class="step-content">
-            <div class="step-title">⚠️ Tätigkeitsnachweis (letzte Frage, Sektion 4)</div>
-            <div class="step-text">Frage <strong>XX-4.4</strong> ist mit <em>„⚠️ Erforderlich für Autorisierung"</em> markiert. Diese Frage <strong>muss mit OK</strong> bewertet werden, damit eine Autorisierung ausgestellt werden kann.</div>
+            <div class="step-title">⚠️ Tätigkeitsnachweis – letzte Frage, Sektion 4</div>
+            <div class="step-text">Frage <strong>XX-4.4</strong> ist mit <em>„⚠️ Erforderlich für Autorisierung"</em> markiert. Diese Frage <strong>muss mit OK</strong> bewertet werden, damit eine Autorisierung ausgestellt werden kann. Fehlt sie, bleibt der Status auf „⚠️ Tätigkeitsnachweis fehlt".</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">05</div>
           <div class="step-content">
             <div class="step-title">Mobile: Einzelfragen-Navigation</div>
-            <div class="step-text">Auf Smartphones eine Frage pro Bildschirm. Navigation mit <strong>← Zurück / Weiter →</strong>. Farbige Sektions-Buttons oben springen zur ersten Frage einer Sektion. Zähler <code>8/16</code> zeigt aktuelle Position.</div>
+            <div class="step-text">Auf Smartphones wird eine Frage pro Bildschirm angezeigt. Navigation mit <strong>← Zurück / Weiter →</strong>. Farbige Sektions-Buttons oben springen zur ersten Frage einer Sektion. Zähler <code>8/16</code> zeigt aktuelle Position. Auf Mobile werden Bilder ebenfalls unterstützt.</div>
           </div>
         </div>
       </div>
       <div class="box box-tip" style="margin-top:14px;">
         <div class="box-ico">📊</div>
-        <div><div class="box-title">Gesamtergebnis nach 16 Fragen</div><div class="box-text"><strong>✅ Bestanden</strong> – alle OK + Tätigkeitsnachweis vorhanden &nbsp;|&nbsp; <strong>⚠️ Tätigkeitsnachweis fehlt</strong> – alle OK aber Nachweis fehlt &nbsp;|&nbsp; <strong>❌ Nicht bestanden</strong> – min. eine Nicht-OK-Antwort</div></div>
+        <div><div class="box-title">Fortschrittsanzeige &amp; Gesamtergebnis</div><div class="box-text">Der Fortschrittsbalken oben zeigt den Prozentsatz beantworteter Fragen. Nach allen 16 Fragen erscheint das Ergebnis: <strong>✅ Bestanden</strong> – alle OK + Tätigkeitsnachweis vorhanden &nbsp;|&nbsp; <strong>⚠️ Tätigkeitsnachweis fehlt</strong> – alle OK aber Nachweis fehlt &nbsp;|&nbsp; <strong>❌ Nicht bestanden</strong> – min. eine Nicht-OK-Antwort</div></div>
+      </div>
+      <div class="tbl-wrap" style="margin-top:18px;">
+        <table class="t">
+          <thead><tr><th>Sektion</th><th>Inhalt (alle Verfahren)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1 – Qualifikation</strong></td><td>Sehtest, Zertifikat, Normenkenntnisse</td></tr>
+            <tr><td><strong>2 – Geräteprüfung</strong></td><td>Kalibrierung, Referenzteile, Geräteparameter, UV-Lampe (MT)</td></tr>
+            <tr><td><strong>3 – Prüfdurchführung</strong></td><td>Systematische Prüfung, Fehlererkennung, n.i.O.-Erkennung, Fehlbewertungen</td></tr>
+            <tr><td><strong>4 – Dokumentation</strong></td><td>Protokoll, Trennprinzip, Entmagnetisierung (ET/MT), <strong>Tätigkeitsnachweis (4.4)</strong></td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -690,23 +731,34 @@ footer strong { color: rgba(255,255,255,.65); }
           <div class="step-num">01</div>
           <div class="step-content">
             <div class="step-title">Automatisches lokales Speichern</div>
-            <div class="step-text">Jede Änderung (Bewertung, Kommentar, Kopfdaten) wird <strong>sofort automatisch lokal gespeichert</strong>. Keine manuelle Speichern-Schaltfläche nötig. Browserfenster schließen ist sicher.</div>
+            <div class="step-text">Jede Änderung (Bewertung, Kommentar, Kopfdaten) wird <strong>sofort automatisch lokal gespeichert</strong>. Kein manueller Speichern-Schritt nötig. Das Browserfenster kann jederzeit geschlossen werden – beim nächsten Öffnen ist das Audit genau so, wie es verlassen wurde.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
           <div class="step-content">
-            <div class="step-title">💾 Save – Audit in Cloud übertragen</div>
-            <div class="step-text">Der grüne <strong>„💾 Save"</strong>-Button schließt das Audit ab und überträgt es in die Cloud. <strong>Voraussetzung:</strong> Mitarbeiter-Nr. muss einem vorhandenen Mitarbeiter entsprechen. Sonst erscheint eine Fehlermeldung.</div>
+            <div class="step-title">💾 Save – Audit abschließen &amp; Cloud-Übertragung</div>
+            <div class="step-text">Der grüne <strong>„💾 Save"</strong>-Button schließt das Audit ab und überträgt es in die Cloud sowie die Mitarbeiterliste. <strong>Voraussetzungen:</strong> Cloud verbunden + Mitarbeiter-Nr. muss einem vorhandenen Mitarbeiter entsprechen. Ein neues, identisches Audit-Dokument wird erzeugt – das aktuelle Formular wird damit nicht geleert, sodass der Auditor weiterarbeiten kann.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">03</div>
           <div class="step-content">
             <div class="step-title">🗑️ Reset – Audit vollständig zurücksetzen</div>
-            <div class="step-text">Der rote <strong>„🗑️ Reset"</strong>-Button löscht alle Antworten, Kommentare, Bilder und Kopfdaten. Bestätigungsabfrage erscheint. Nicht rückgängig machbar.</div>
+            <div class="step-text">Der rote <strong>„🗑️ Reset"</strong>-Button löscht alle Antworten, Kommentare, Bilder und Kopfdaten des aktuellen Audits. Eine Bestätigungsabfrage erscheint. Diese Aktion ist <strong>nicht rückgängig machbar</strong>.</div>
           </div>
         </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">← Zurück – Zur Verfahrensauswahl</div>
+            <div class="step-text">Der graue Zurück-Button beendet das aktuelle Audit und kehrt zur Kachelauswahl zurück. Auch hier erscheint eine Bestätigungsabfrage. Nicht gespeicherte Cloud-Daten gehen nicht verloren – das lokale Speichern ist bereits erfolgt.</div>
+          </div>
+        </div>
+      </div>
+      <div class="box box-info" style="margin-top:14px;">
+        <div class="box-ico">💡</div>
+        <div><div class="box-title">Mehrere Audits pro Mitarbeiter</div><div class="box-text">Ein Mitarbeiter kann mehrere Audits in verschiedenen Verfahren haben. Die App speichert automatisch nur das <strong>aktuellste vollständige Audit</strong> pro Verfahren und Mitarbeiter für die Statusanzeige. Ältere Audits bleiben in der Audit-Liste (<strong>📊-Button</strong>) sichtbar und können geladen oder gelöscht werden.</div></div>
       </div>
     </section>
 
@@ -720,28 +772,32 @@ footer strong { color: rgba(255,255,255,.65); }
         <div class="step">
           <div class="step-num">01</div>
           <div class="step-content">
-            <div class="step-title">📊 Drucken – Audit-Bericht</div>
-            <div class="step-text">Der orangene <strong>„📊 Drucken"</strong>-Button öffnet ein Overlay mit dem vollständigen Bericht: Kopfdaten, alle 16 Fragen mit ✅/❌, Kommentare, Bilder, Unterschriftenfelder, Datum und nächste Prüffälligkeit.</div>
+            <div class="step-title">📊 Drucken – vollständiger Audit-Bericht</div>
+            <div class="step-text">Der orangene <strong>„📊 Drucken"</strong>-Button öffnet ein Overlay mit dem vollständigen Prüfbericht: Schaeffler-Logo, Prüfbericht-Nr., alle Kopfdaten in dreispaltigem Layout (Operator / Auditor / Supervisor), Prüfungsdetails, alle 16 Fragen mit ✅/❌, Kommentare, Bilder, Unterschriftenfelder, Erstelldatum und nächste Prüffälligkeit (+12 Monate).</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
           <div class="step-content">
-            <div class="step-title">📋 Autorisierung – aus Mitarbeiterliste</div>
-            <div class="step-text">In der Mitarbeiterliste: grüner <strong>📋</strong>-Button. Erstellt ein offizielles Autorisierungsformular mit Mitarbeiterdaten, Verfahrensliste, Unterschriftenfelder und Gültigkeitsstempel (12 Monate). <strong>Voraussetzungen:</strong> alle 16 Fragen OK + Tätigkeitsnachweis bestätigt + keine Nicht-OK-Bewertungen.</div>
+            <div class="step-title">📋 Autorisierung – aus der Mitarbeiterliste</div>
+            <div class="step-text">In der Mitarbeiterliste: grüner <strong>📋</strong>-Button. Erstellt ein offizielles Autorisierungsdokument mit Mitarbeiterdaten, Verfahrensliste (zweispaltig), Autorisierungstext (Deutsch/Englisch), Unterschriftenfelder und Gültigkeitsstempel (12 Monate). <strong>Voraussetzungen:</strong> Alle 16 Fragen beantwortet + Tätigkeitsnachweis (4.4) mit OK + keinerlei Nicht-OK-Bewertungen.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">03</div>
           <div class="step-content">
             <div class="step-title">🖨️ Drucken / Als PDF speichern</div>
-            <div class="step-text">Grüner 🖨️-Button im Overlay → Browser-Druckmenü → <strong>„Als PDF speichern"</strong>. Schaeffler-Logo wird automatisch eingefügt. Pop-ups müssen für die Seite erlaubt sein.</div>
+            <div class="step-text">Der grüne 🖨️-Button im Overlay öffnet den Browser-Druckdialog → <strong>„Als PDF speichern"</strong> wählen. Pop-ups müssen für die Seite erlaubt sein. Das Druckformat ist A4 Hochformat mit 12 mm Rändern, optimiert für beidseitigen Druck. Im Druck-Footer erscheinen: Ersteller, Copyright und Versionsnummer.</div>
           </div>
         </div>
       </div>
       <div class="box box-gold" style="margin-top:14px;">
         <div class="box-ico">🏢</div>
-        <div><div class="box-title">NDT Supervisor – Sonderfall</div><div class="box-text">Enthält das Notiz-Feld des Mitarbeiters den Text <code>ndt supervisor</code>, erhält das Autorisierungsdokument automatisch die NDT-Supervisor-Formulierung mit zwei Unterschriftenfeldern (Q-Manager &amp; NDT Supervisor).</div></div>
+        <div><div class="box-title">NDT Supervisor – Sonderfall</div><div class="box-text">Enthält das <strong>Notiz-Feld</strong> des Mitarbeiters den Text <code>ndt supervisor</code> (Groß-/Kleinschreibung egal), erhält das Autorisierungsdokument automatisch die NDT-Supervisor-Formulierung. Statt „Autorisierter Mitarbeiter" erscheint ein <strong>zweiseitiges Layout</strong> mit Q-Manager und NDT-Supervisor als Unterzeichner.</div></div>
+      </div>
+      <div class="box box-info" style="margin-top:10px;">
+        <div class="box-ico">🏭</div>
+        <div><div class="box-title">Werk-spezifische Formulierung</div><div class="box-text">Enthält das Abteilungsfeld des Mitarbeiters <code>SW1</code> oder <code>WI/SW1</code>, wird automatisch <em>„Werk 1"</em> im Autorisierungstext genannt. Entsprechend für <code>SW2</code> / <code>WI/SW2</code> → <em>„Werk 2"</em>.</div></div>
       </div>
     </section>
 
@@ -751,19 +807,40 @@ footer strong { color: rgba(255,255,255,.65); }
         <div class="sec-num">B7</div>
         <div><div class="sec-label">Operator Audit</div><h2 class="sec-title">Mitarbeiterliste</h2></div>
       </div>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;max-width:680px;">Die Mitarbeiterliste (Startseite → goldener 👥-Button) zeigt alle geprüften Mitarbeiter mit ihrem Audit-Status, Zertifikaten und Aktionsbuttons.</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;max-width:680px;">Die Mitarbeiterliste (Startseite → goldener 👥-Button) zeigt alle Mitarbeiter mit Audit-Status, Zertifikaten, Ablaufdaten, Audit-Zyklen und Aktionsbuttons. Sortierung erfolgt automatisch alphabetisch nach Nachname, dann Vorname.</p>
+
+      <div class="tbl-wrap" style="margin-bottom:18px;">
+        <table class="t">
+          <thead><tr><th>Spalte</th><th>Inhalt</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Status</strong></td><td>Farbiger Badge: Gültig / Abgelaufen / Läuft bald ab / Kein Audit / Tätigkeit bestätigen</td></tr>
+            <tr><td><strong>Name</strong></td><td>Name + Abteilung (sofern vorhanden)</td></tr>
+            <tr><td><strong>Personal-Nr.</strong></td><td>Personalnummer – muss mit Audit-Kopfdaten übereinstimmen</td></tr>
+            <tr><td><strong>Geburtsdatum</strong></td><td>Optional, Format TT.MM.JJJJ</td></tr>
+            <tr><td><strong>Brille</strong></td><td>👓 Ja / ❌ Nein / ❓ Unbekannt</td></tr>
+            <tr><td><strong>Datum Sehtest</strong></td><td>Datum des letzten Sehtests, Format TT.MM.JJJJ</td></tr>
+            <tr><td><strong>Ident.-Nr.</strong></td><td>Identifikationsnummer (für DGZFP-Verifizierung)</td></tr>
+            <tr><td><strong>Stempel-Nr.</strong></td><td>Persönliche Stempelnummer des Prüfers</td></tr>
+            <tr><td><strong>Zertifikat / Ablaufdatum</strong></td><td>Pro Verfahren: Kürzel + Stufe (z.B. ET-PW) + Ablaufdatum farbig (grün / gelb / rot)</td></tr>
+            <tr><td><strong>Audit-Zyklus</strong></td><td>Farbiger Badge: 1 Jahr / 4 Jahre / 5 Jahre – pro Verfahren, in gleicher Reihenfolge wie Zertifikate</td></tr>
+            <tr><td><strong>Aktionen</strong></td><td>5 Buttons: ✏️ Bearbeiten · 📊 Audits · 📋 Autorisierung · 🔗 DGZFP · 🗑️ Löschen</td></tr>
+          </tbody>
+        </table>
+      </div>
+
       <div class="tbl-wrap" style="margin-bottom:18px;">
         <table class="t">
           <thead><tr><th>Button</th><th>Farbe</th><th>Funktion</th></tr></thead>
           <tbody>
-            <tr><td>✏️</td><td><span class="badge b-blue">blau</span></td><td>Mitarbeiterdaten bearbeiten (Modal)</td></tr>
-            <tr><td>📊</td><td><span class="badge b-pur">violett</span></td><td>Alle Audits des Mitarbeiters anzeigen, laden, löschen oder als geprüft markieren</td></tr>
+            <tr><td>✏️</td><td><span class="badge b-blue">blau</span></td><td>Mitarbeiterdaten bearbeiten (Modal mit allen Feldern)</td></tr>
+            <tr><td>📊</td><td><span class="badge b-pur">violett</span></td><td>Alle Audits des Mitarbeiters anzeigen: laden, löschen oder als geprüft markieren</td></tr>
             <tr><td>📋</td><td><span class="badge b-grn">grün</span></td><td>Autorisierungsdokument erstellen und drucken</td></tr>
-            <tr><td>🔗</td><td><span class="badge b-gold">orange</span></td><td>DGZFP-Zertifikatsverifizierung öffnen (Name + Ident.-Nr. werden übergeben)</td></tr>
+            <tr><td>🔗</td><td><span class="badge b-gold">orange</span></td><td>DGZFP-Zertifikatsverifizierung öffnen (Nachname + Ident.-Nr. werden übergeben)</td></tr>
             <tr><td>🗑️</td><td><span class="badge b-red">rot</span></td><td>Mitarbeiter aus der Liste löschen (Bestätigungsabfrage)</td></tr>
           </tbody>
         </table>
       </div>
+
       <div class="status-row">
         <span class="st st-valid">✅ Gültig</span>
         <span class="st st-exp">❌ Abgelaufen</span>
@@ -771,9 +848,28 @@ footer strong { color: rgba(255,255,255,.65); }
         <span class="st st-miss">⭕ Kein Audit</span>
         <span class="st st-conf">🔄 Tätigkeit bestätigen</span>
       </div>
+
       <div class="box box-tip" style="margin-top:14px;">
         <div class="box-ico">🔍</div>
-        <div><div class="box-title">Filtern &amp; Suchen</div><div class="box-text">Suchfeld (Name / Personalnummer / Ident.-Nr.) · Status-Dropdown (Gültig / Abgelaufen / …) · Abteilungs-Dropdown (dynamisch aus Mitarbeiterdaten befüllt) · <strong>„Filter löschen"</strong> setzt alles zurück. Statistik-Boxen unten passen sich dem Filter an.</div></div>
+        <div><div class="box-title">Filtern &amp; Suchen</div><div class="box-text">Suchfeld (Name / Personalnummer / Ident.-Nr.) · Status-Dropdown (Gültig / Abgelaufen / …) · Abteilungs-Dropdown (dynamisch aus Mitarbeiterdaten befüllt, Option „Ohne Abteilung" für Mitarbeiter ohne Abteilungszuweisung) · <strong>„Filter löschen"</strong> setzt alle Filter zurück. Statistik-Boxen unten passen sich dem Filter an.</div></div>
+      </div>
+
+      <div class="box box-info" style="margin-top:10px;">
+        <div class="box-ico">📊</div>
+        <div><div class="box-title">Statistik-Boxen</div><div class="box-text">Unterhalb der Tabelle befinden sich 8 Statistik-Boxen: <strong>Audit gültig / Abgelaufen / Läuft bald ab / Kein Audit / Gesamt</strong> sowie <strong>Gültige Zertifikate / Zertifikate bald ablaufend / Abgelaufene Zertifikate</strong>. Alle Werte beziehen sich auf die aktuell gefilterte Ansicht.</div></div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <div class="tbl-wrap">
+          <table class="t">
+            <thead><tr><th>Aktion</th><th>Wo</th><th>Beschreibung</th></tr></thead>
+            <tbody>
+              <tr><td>➕ Mitarbeiter</td><td>Kopfzeile</td><td>Öffnet das Formular zum Anlegen eines neuen Mitarbeiters</td></tr>
+              <tr><td>☁️ Sync</td><td>Kopfzeile</td><td>Manuelle Cloud-Synchronisation auslösen</td></tr>
+              <tr><td>🗑️ Lokale Daten löschen</td><td>Kopfzeile</td><td>Löscht alle lokalen Daten (Audits, Mitarbeiter, Einstellungen). Cloud-Daten bleiben erhalten. Bestätigung erforderlich.</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -783,19 +879,117 @@ footer strong { color: rgba(255,255,255,.65); }
         <div class="sec-num">B8</div>
         <div><div class="sec-label">Operator Audit</div><h2 class="sec-title">Zertifikate &amp; Audit-Zyklen</h2></div>
       </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;max-width:680px;">Beim Anlegen oder Bearbeiten eines Mitarbeiters werden Zertifikate pro Verfahren verwaltet. Für jedes aktivierte Verfahren werden Stufe, Ablaufdatum und – bei Prüfwerkern – der erweiterte Zyklus erfasst.</p>
       <div class="tbl-wrap" style="margin-bottom:18px;">
         <table class="t">
           <thead><tr><th>Stufe</th><th>Verfahren</th><th>Audit-Zyklus</th><th>Besonderheit</th></tr></thead>
           <tbody>
-            <tr><td>Level 1, 2, 3</td><td>ET, MT, UT, NE (außer NE 2/3)</td><td><span class="badge" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;">1 Jahr</span></td><td>–</td></tr>
+            <tr><td>Level 1, 2, 3</td><td>ET, MT, UT, NE (außer NE 2/3)</td><td><span class="badge" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;">1 Jahr</span></td><td>Standardzyklus, jährliche Wiederholung</td></tr>
             <tr><td>PW (Prüfwerker)</td><td>ET, MT, NE, UT</td><td><span class="badge" style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;">4 Jahre</span></td><td>Nach 2 Jahren: Tätigkeitsbestätigung erforderlich</td></tr>
-            <tr><td>Level 2 / 3</td><td>NE – Nital-Ätzen</td><td><span class="badge" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;">5 Jahre</span></td><td>Automatisch – keine Checkbox nötig</td></tr>
+            <tr><td>Level 2 / 3</td><td>NE – Nital-Ätzen</td><td><span class="badge" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;">5 Jahre</span></td><td>Automatisch erkannt – keine Checkbox nötig</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl-wrap" style="margin-bottom:18px;">
+        <table class="t">
+          <thead><tr><th>Feld im Mitarbeiter-Modal</th><th>Beschreibung</th></tr></thead>
+          <tbody>
+            <tr><td>Checkbox (ET / MT / NE / UT)</td><td>Aktiviert das Verfahren für diesen Mitarbeiter</td></tr>
+            <tr><td>Stufe (1 / 2 / 3 / PW)</td><td>Erscheint nach Aktivierung der Checkbox. Gültige Werte: <code>1</code>, <code>2</code>, <code>3</code>, <code>PW</code></td></tr>
+            <tr><td>Ablaufdatum</td><td>Format TT.MM.JJJJ – Ablaufdatum des Zertifikats. Erscheint farbig in der Tabelle</td></tr>
+            <tr><td>Verlängerung (Checkbox, nur PW)</td><td>Erscheint bei Stufe PW. Aktivieren für verlängerten PW-Zyklus (immer 4 Jahre)</td></tr>
+            <tr><td>NE 2/3-Info</td><td>Bei NE Level 2 oder 3 erscheint automatisch der Hinweis „✓ 5-Jahres-Audit (NE 2/3)"</td></tr>
           </tbody>
         </table>
       </div>
       <div class="box box-gold">
         <div class="box-ico">🔄</div>
-        <div><div class="box-title">Tätigkeitsbestätigung bei Prüfwerkern (PW)</div><div class="box-text">Nach <strong>2 Jahren</strong> ohne neues Audit wird der Status auf <em>„🔄 Tätigkeit bestätigen"</em> gesetzt. Bestätigung erfolgt durch Haken <strong>„Tätigkeitsnachweis bestätigt"</strong> im Bearbeiten-Modal. Das Ablaufdatum in der Tabelle ist <strong>grün</strong> (>6 Monate gültig), <strong>gelb</strong> (≤6 Monate) oder <strong>rot</strong> (abgelaufen).</div></div>
+        <div><div class="box-title">Tätigkeitsbestätigung bei Prüfwerkern (PW)</div><div class="box-text">Nach <strong>2 Jahren</strong> ohne neues vollständiges Audit wird der Status auf <em>„🔄 Tätigkeit bestätigen"</em> gesetzt. Die Bestätigung erfolgt durch Aktivierung des Hakens <strong>„Tätigkeitsnachweis bestätigt"</strong> im Bearbeiten-Modal. Das Ablaufdatum in der Tabelle erscheint <strong style="color:#15803d;">grün</strong> (>6 Monate gültig), <strong style="color:#d97706;">gelb</strong> (≤6 Monate) oder <strong style="color:#dc2626;">rot</strong> (abgelaufen).</div></div>
+      </div>
+    </section>
+
+    <!-- B9 Prüfwerker -->
+    <section class="section" id="op-pw">
+      <div class="sec-header">
+        <div class="sec-num">B9</div>
+        <div><div class="sec-label">Operator Audit</div><h2 class="sec-title">Prüfwerker (PW) – Praxisphase &amp; Nachweis</h2></div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;max-width:680px;">Für Mitarbeiter mit Stufe PW (Prüfwerker) existiert ein eigenes Modul zur Dokumentation der verpflichtenden betreuten Praxisphase vor dem ersten Audit-Abschluss.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Praxisnachweis öffnen</div>
+            <div class="step-text">In der Mitarbeiterliste erscheint für PW-Verfahren der Kürzel-Badge als <strong>klickbarer Link</strong> (z.B. <code>ET-PW 📋</code>). Klick öffnet das Praxisnachweis-Modal für genau diesen Mitarbeiter und dieses Verfahren. Das Icon zeigt ✅ wenn 160 Stunden erreicht, sonst 📋.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Wöchentliche Stunden erfassen</div>
+            <div class="step-text">Tabelle mit Zeilen für Wochennummer, betreute Stunden, Anzahl Beurteilungen und Kommentar/Lernpunkt. Zeilen können mit <strong>„+ Neue Zeile"</strong> hinzugefügt und mit ✕ wieder entfernt werden. Die <strong>Gesamtsumme</strong> der Stunden wird live berechnet (Ziel: 160 Stunden).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Card-IDs (verschlüsselt)</div>
+            <div class="step-text">Für Mitarbeiter, Auditor und Prüfaufsicht können Card-IDs hinterlegt werden. Diese sind standardmäßig mit <code>••••••••</code> maskiert. Durch Eingabe des Master-Passworts (<strong>🔓 Entsperren</strong>) werden die echten Werte sichtbar und bearbeitbar. Das Passwort wird nicht gespeichert und die Felder sperren sich beim Schließen des Modals automatisch.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Speichern</div>
+            <div class="step-text">Klick auf <strong>„Speichern"</strong> legt die Praxisnachweis-Daten beim Mitarbeiter ab und synchronisiert sie automatisch mit der Cloud. Die Mitarbeiterliste wird nach dem Speichern aktualisiert.</div>
+          </div>
+        </div>
+      </div>
+      <div class="box box-info" style="margin-top:14px;">
+        <div class="box-ico">📋</div>
+        <div><div class="box-title">Regelwerk Praxisphase</div><div class="box-text"><strong>160 Stunden</strong> betreute Praxisphase sind Voraussetzung. Ein Pate/Mentor (mind. 2 Jahre Level 1 oder 2 Erfahrung) begleitet den Prüfwerker. Am Ende der Praxisphase führt die Prüfaufsicht das abschließende Operator Audit durch und bewertet die Schulungsqualität.</div></div>
+      </div>
+    </section>
+
+    <!-- B10 Cloud & Sync -->
+    <section class="section" id="op-sync">
+      <div class="sec-header">
+        <div class="sec-num">B10</div>
+        <div><div class="sec-label">Operator Audit</div><h2 class="sec-title">Cloud &amp; Synchronisation</h2></div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Automatischer Hintergrund-Sync</div>
+            <div class="step-text">Die App synchronisiert automatisch alle <strong>60 Sekunden</strong> mit Supabase (Cloud-Datenbank). Nach dem ersten Laden der App erfolgt ein erster Sync nach 2 Sekunden. Neue Audits und Mitarbeiter anderer Geräte werden automatisch eingelesen.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">☁️ Sync – manuell auslösen</div>
+            <div class="step-text">Über den <strong>„☁️ Sync"</strong>-Button in der Mitarbeiterliste wird eine vollständige bidirektionale Synchronisation gestartet: Alle lokalen Audits und Mitarbeiter werden hochgeladen, Cloud-Daten werden heruntergeladen und mit lokalen Daten zusammengeführt (<em>Last-Write-Wins</em> nach Zeitstempel).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Offline-Betrieb</div>
+            <div class="step-text">Audits können auch ohne Cloud-Verbindung durchgeführt und lokal gespeichert werden. Beim nächsten Verbindungsaufbau synchronisiert die App automatisch alle lokal gespeicherten Daten. Der Cloud-Status (grün/rot) ist jederzeit im Header sichtbar.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">🗑️ Lokale Daten löschen</div>
+            <div class="step-text">Löscht alle lokalen Daten (Audits, Mitarbeiter, Einstellungen, Synchronisations-History). Cloud-Daten bleiben unverändert erhalten. Nach dem Löschen: Cloud-Sync auslösen oder App neu laden, um Cloud-Daten wiederherzustellen.</div>
+          </div>
+        </div>
+      </div>
+      <div class="box box-warn" style="margin-top:14px;">
+        <div class="box-ico">⚠️</div>
+        <div><div class="box-title">Datenschutz: Keine Bilder in der Cloud</div><div class="box-text">Bilder aus Audit-Fragen werden <strong>nicht in die Cloud hochgeladen</strong> – sie verbleiben ausschließlich im lokalen Browser-Speicher. Mitarbeiterdaten (Name, Personalnummer, Zertifikate) und Audit-Ergebnisse (Bewertungen, Kommentare) werden verschlüsselt in der Cloud gespeichert.</div></div>
       </div>
     </section>
 
@@ -971,6 +1165,297 @@ footer strong { color: rgba(255,255,255,.65); }
             <div class="step-text"><strong>Save</strong> speichert den aktuellen Stand lokal. <strong>Reset</strong> löscht nach Bestätigung alle Antworten und Kopfdaten für dieses Verfahren.</div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <div class="chapter-divider" style="background:linear-gradient(90deg,#92400e,transparent);"></div>
+
+    <!-- ═══════════════════════════════════════════
+         APP D: ZfP SELF AUDIT
+    ═══════════════════════════════════════════ -->
+    <div class="chapter-header" style="background:linear-gradient(135deg,#78350f 0%,#92400e 100%);">
+      <div class="chapter-ico">🔍</div>
+      <div class="chapter-text">
+        <div class="chapter-eyebrow">App D · Selbst-Audit</div>
+        <div class="chapter-title">ZfP Self Audit</div>
+        <div class="chapter-sub">Selbst-Audits durchführen · PRI-Bericht (englisch) · Ergebnisse in der Cloud speichern</div>
+      </div>
+    </div>
+
+    <!-- D1 Überblick -->
+    <section class="section" id="sa-intro">
+      <div class="sec-header">
+        <div class="sec-num">D1</div>
+        <div><div class="sec-label">Self Audit</div><h2 class="sec-title">Überblick &amp; Funktionen</h2></div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);max-width:680px;margin-bottom:20px;">Der ZfP Self Audit ermöglicht es Prüfern, sich anhand standardisierter Fragenkataloge (nach Nadcap/PRI-Standard) selbst zu auditieren. Die Fragen werden aus externen JSON-Dateien geladen und sind zweisprachig (Deutsch / Englisch) verfügbar. Ergebnisse werden lokal gespeichert und optional in die Cloud (Supabase) übertragen. Der fertige Bericht wird in englischer Sprache als PRI-konformes Dokument ausgegeben.</p>
+      <div class="feat-grid">
+        <div class="feat"><span class="feat-ico">📋</span><div class="feat-title">Zweisprachige Fragenkataloge</div><div class="feat-text">Fragen werden parallel auf Deutsch (für die Eingabe) und Englisch (für den Bericht) geladen. Quellformat: JSON-Dateien je Verfahren.</div></div>
+        <div class="feat"><span class="feat-ico">🔍</span><div class="feat-title">Prüfbereich-Navigation</div><div class="feat-text">Fragen sind in nummerierte Prüfbereiche (Sektionen 3–8) gegliedert. Jeder Bereich wird separat bearbeitet und zeigt seinen eigenen Fortschritt.</div></div>
+        <div class="feat"><span class="feat-ico">📊</span><div class="feat-title">PRI-Bericht (Englisch)</div><div class="feat-text">Automatisch generierter englischer Auditbericht im PRI/Nadcap-Stil mit Zusammenfassung, allen Fragen, Antworten, Nachweisen und Dokumenten-ID.</div></div>
+        <div class="feat"><span class="feat-ico">☁️</span><div class="feat-title">Cloud-Speicherung</div><div class="feat-text">Abgeschlossene Audits können mit Namen versehen in Supabase gespeichert werden. Späteres Laden von anderen Geräten möglich.</div></div>
+        <div class="feat"><span class="feat-ico">💾</span><div class="feat-title">Lokale Persistenz</div><div class="feat-text">Jede Antwort wird sofort automatisch im Browser (localStorage) gespeichert. Audits überleben Browser-Neustarts ohne Datenverlust.</div></div>
+        <div class="feat"><span class="feat-ico">📂</span><div class="feat-title">Import / Export</div><div class="feat-text">Ergebnisse als JSON exportieren und auf anderen Geräten oder in späteren Sitzungen wieder importieren. Unterstützt altes und neues Format.</div></div>
+      </div>
+
+      <div class="tbl-wrap" style="margin-top:20px;">
+        <table class="t">
+          <thead><tr><th>Verfahren</th><th>Kürzel</th><th>Standard</th><th>JSON-Dateien</th></tr></thead>
+          <tbody>
+            <tr><td>Wirbelstromprüfung</td><td><span class="badge b-blue">⚡ ET</span></td><td><code>TPG-AC7114/5</code></td><td><code>ET_DE.json</code> + <code>ET_EN.json</code></td></tr>
+            <tr><td>Magnetpulverprüfung</td><td><span class="badge b-red">🧲 MT</span></td><td><code>TPG-AC7114/2</code></td><td><code>MT_DE.json</code> + <code>MT_EN.json</code></td></tr>
+            <tr><td>Nital-Ätzen</td><td><span class="badge b-grn">🧪 NE</span></td><td><code>TPG-AC7114/12</code></td><td><code>NE_DE.json</code> + <code>NE_EN.json</code></td></tr>
+            <tr><td>Ultraschallprüfung</td><td><span class="badge b-pur">📡 UT</span></td><td><code>TPG-AC7114/3</code></td><td><code>UT_DE.json</code> + <code>UT_EN.json</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box box-gold" style="margin-top:16px;">
+        <div class="box-ico">⚙️</div>
+        <div><div class="box-title">Voraussetzung: JSON-Dateien</div><div class="box-text">Die App lädt die Fragenkataloge aus externen JSON-Dateien. Diese müssen sich <strong>im selben Ordner</strong> wie die <code>index.html</code> befinden. Dateinamen sind case-sensitiv: <code>ET_DE.json</code>, <code>ET_EN.json</code>, <code>MT_DE.json</code> usw. Ohne diese Dateien kann kein Audit gestartet werden.</div></div>
+      </div>
+    </section>
+
+    <!-- D2 Verfahren wählen -->
+    <section class="section" id="sa-start">
+      <div class="sec-header">
+        <div class="sec-num">D2</div>
+        <div><div class="sec-label">Self Audit</div><h2 class="sec-title">Verfahren wählen &amp; Audit starten</h2></div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;max-width:680px;">Die Startseite zeigt vier farbige Kacheln für die verfügbaren Prüfverfahren sowie eine Liste aller bereits gespeicherten Audits.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Verfahrenskachel anklicken</div>
+            <div class="step-text">Klick auf eine der vier Kacheln (<strong>⚡ Wirbelstrom, 🧲 Magnetpulver, 🧪 Nital, 📡 Ultraschall</strong>) startet das Audit. Die Prozentzahl auf der Kachel zeigt den Fortschritt eines <strong>bereits lokal gespeicherten</strong> Audits für dieses Verfahren. Bei <code>0%</code> ist noch kein Audit gespeichert.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">JSON-Dateien werden geladen</div>
+            <div class="step-text">Nach dem Klick lädt die App die zugehörigen JSON-Dateien (<code>ET_DE.json</code> + <code>ET_EN.json</code> etc.) vom Server. Falls ein lokales Audit vorhanden und vollständig ist, werden die gespeicherten Antworten sofort wiederhergestellt, ohne die Dateien neu zu laden.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Abgeschlossene Audits laden</div>
+            <div class="step-text">Im unteren Bereich der Startseite werden alle gespeicherten Audits als Karten angezeigt – sowohl <span class="badge b-blue">💻 Lokal</span> gespeicherte als auch <span class="badge b-grn">☁️ Supabase</span>-Audits. Klick auf <strong>📂 Laden</strong> öffnet das Audit direkt in der Übersichtsansicht.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box box-info" style="margin-top:14px;">
+        <div class="box-ico">🔄</div>
+        <div><div class="box-title">Cloud-Status auf der Startseite</div><div class="box-text">Oben rechts im Bereich „Abgeschlossene Audits" zeigt ein Statusindikator (<strong>🟢 Verbunden</strong> oder <strong>🔴 Nicht verbunden</strong>) die aktuelle Supabase-Verbindung. Mit dem ⟳-Button kann die Verbindung manuell getestet, mit dem ↻-Button die Audit-Liste aktualisiert werden.</div></div>
+      </div>
+    </section>
+
+    <!-- D3 Audit-Übersicht -->
+    <section class="section" id="sa-overview">
+      <div class="sec-header">
+        <div class="sec-num">D3</div>
+        <div><div class="sec-label">Self Audit</div><h2 class="sec-title">Audit-Übersicht</h2></div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;max-width:680px;">Nach dem Starten eines Verfahrens öffnet sich die Übersichtsseite. Sie zeigt den Gesamtfortschritt und alle Prüfbereiche als anklickbare Liste.</p>
+
+      <div class="tbl-wrap" style="margin-bottom:18px;">
+        <table class="t">
+          <thead><tr><th>Element</th><th>Beschreibung</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Statistik-Karten</strong></td><td>Vier Karten: Audit-Typ · Standard (z.B. TPG-AC7114/5) · Gesamtanzahl Fragen · Gesamtfortschritt in % (beantwortet/gesamt)</td></tr>
+            <tr><td><strong>Prüfbereich-Liste</strong></td><td>Alle Sektionen (3–8) als Listeneinträge mit Name, Fortschritt (x/y Fragen · %) und Status-Badge</td></tr>
+            <tr><td><strong>Status-Badges</strong></td><td><span class="badge b-gray">Ausstehend</span> kein Eintrag · <span class="badge" style="background:#f39c12;color:white;">In Bearbeitung</span> teilweise · <span class="badge b-grn">Abgeschlossen</span> alle beantwortet</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tbl-wrap" style="margin-bottom:18px;">
+        <table class="t">
+          <thead><tr><th>Bereich</th><th>Deutsch</th><th>Englisch (im Bericht)</th></tr></thead>
+          <tbody>
+            <tr><td><code>3</code></td><td>Ausrüstung und Materialien</td><td>Equipment and Materials</td></tr>
+            <tr><td><code>4</code></td><td>Verfahrensanweisungen und Techniken</td><td>Procedures and Techniques</td></tr>
+            <tr><td><code>5</code></td><td>Systemleistung und Prüfungen</td><td>System Performance and Tests</td></tr>
+            <tr><td><code>6</code></td><td>Kalibrierung und Normale</td><td>Calibration and Standards</td></tr>
+            <tr><td><code>7</code></td><td>Durchführung der Prüfung</td><td>Inspection</td></tr>
+            <tr><td><code>8</code></td><td>Dokumentation</td><td>Documentation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Prüfbereich öffnen</div>
+            <div class="step-text">Klick auf einen Bereich in der Liste öffnet die Fragenansicht für genau diesen Bereich. Die Übersicht bleibt gespeichert – mit <strong>← Alle Bereiche</strong> kehrt man jederzeit zurück und sieht den aktualisierten Fortschritt.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">PRI-Bericht erstellen</div>
+            <div class="step-text">Der violette Button <strong>📋 PRI Bericht (eng.)</strong> generiert jederzeit den englischen Auditbericht – auch wenn das Audit noch nicht vollständig abgeschlossen ist. Unbeantwortete Fragen erscheinen als „Not answered".</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">In Supabase speichern</div>
+            <div class="step-text">Der blaue Button <strong>☁️ In Supabase speichern</strong> öffnet ein Modal zur Eingabe eines optionalen Namens (z.B. <em>„Q1-2026 Ultraschall"</em>). Nach Bestätigung wird das gesamte Audit inkl. aller Antworten und Nachweise in Supabase gesichert.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- D4 Fragen beantworten -->
+    <section class="section" id="sa-fragen">
+      <div class="sec-header">
+        <div class="sec-num">D4</div>
+        <div><div class="sec-label">Self Audit</div><h2 class="sec-title">Fragen beantworten</h2></div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;max-width:680px;">Die Fragenansicht zeigt alle Fragen eines Prüfbereichs auf einmal. Fortschrittsbalken, Statistik und Navigation befinden sich oberhalb der Fragen.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Frage bewerten – JA / NEIN / N/A</div>
+            <div class="step-text">Jede Frage hat zwei oder drei Antwortbuttons: <strong style="color:#27ae60;">JA</strong>, <strong style="color:#e74c3c;">NEIN</strong> und ggf. <strong style="color:#95a5a6;">N/A</strong> (nicht anwendbar). Nach der Auswahl färbt sich der Fragenhintergrund grün (JA), rot (NEIN) oder grau (N/A). Nicht beantwortete Fragen sind gelb hervorgehoben. Ein erneuter Klick auf die gleiche Antwort hebt die Auswahl <strong>nicht</strong> auf.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Hinweistext (Guidance)</div>
+            <div class="step-text">Unter dem Fragetext erscheint kursiv eine Hilfestellung zur Bewertung (<em>Guidance</em>). Diese gibt Hinweise, was bei der Beurteilung zu berücksichtigen ist. Der Guidance-Text stammt direkt aus der JSON-Datei.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Nachweise &amp; Kommentare eintragen</div>
+            <div class="step-text">Unterhalb jeder Frage steht ein Textfeld <strong>„Nachweise / Kommentare"</strong>. Hier können Dokumentennummern, Beobachtungen oder Begründungen eingetragen werden. Diese erscheinen im englischen PRI-Bericht als <em>„Evidence / Comments"</em>.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Fortschrittsanzeige</div>
+            <div class="step-text">Die Statusleiste über den Fragen zeigt laufend: <strong>Fortschritt %</strong> · <strong>beantwortet / gesamt</strong> · <strong>Ja-Zähler</strong> · <strong>Nein-Zähler</strong>. Der grüne Fortschrittsbalken aktualisiert sich nach jeder Antwort. Alle Werte beziehen sich auf das <strong>gesamte Audit</strong>, nicht nur den aktuellen Bereich.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box box-tip" style="margin-top:14px;">
+        <div class="box-ico">🔢</div>
+        <div><div class="box-title">Fragen-IDs und N/A-Option</div><div class="box-text">Jede Frage hat eine ID in der Form <code>7.1.1</code>, <code>7.1.2</code> usw. Die N/A-Option ist nur bei Fragen verfügbar, bei denen sie in der JSON-Datei explizit aktiviert ist (<code>has_na_option: true</code>). Fragen ohne N/A müssen mit JA oder NEIN beantwortet werden.</div></div>
+      </div>
+
+      <div class="box box-info" style="margin-top:10px;">
+        <div class="box-ico">🗑️</div>
+        <div><div class="box-title">Reset – Alle Antworten löschen</div><div class="box-text">Der rote <strong>🗑️ Reset</strong>-Button in der Buttonleiste der Fragenansicht löscht nach einer Sicherheitsabfrage <strong>alle</strong> Antworten und Kommentare des aktuellen Audits. Diese Aktion ist nicht rückgängig machbar.</div></div>
+      </div>
+    </section>
+
+    <!-- D5 Speichern & Export -->
+    <section class="section" id="sa-speichern">
+      <div class="sec-header">
+        <div class="sec-num">D5</div>
+        <div><div class="sec-label">Self Audit</div><h2 class="sec-title">Speichern, Export &amp; PRI-Bericht</h2></div>
+      </div>
+
+      <div class="tbl-wrap" style="margin-bottom:18px;">
+        <table class="t">
+          <thead><tr><th>Funktion</th><th>Button</th><th>Beschreibung</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Auto-Speichern</strong></td><td>—</td><td>Jede Antwort und jeder Kommentar wird sofort automatisch im Browser-Speicher (localStorage) gesichert. Kein manueller Schritt erforderlich.</td></tr>
+            <tr><td><strong>PRI-Bericht</strong></td><td><span class="badge b-pur">📋 PRI Bericht (eng.)</span></td><td>Öffnet den vollständigen englischen Auditbericht in einem neuen Fenster. Enthält: Zusammenfassung, alle Fragen mit Antworten, Nachweise, Dokumenten-ID. Als PDF speichern über den Browser-Druckdialog.</td></tr>
+            <tr><td><strong>Cloud-Speicherung</strong></td><td><span class="badge b-blue">☁️ In Supabase speichern</span></td><td>Öffnet ein Modal zur Namenseingabe. Speichert das Audit mit allen Antworten in der Cloud-Datenbank. Voraussetzung: Supabase-Verbindung aktiv.</td></tr>
+            <tr><td><strong>Import</strong></td><td><span class="badge b-grn">📂 Import</span></td><td>Lädt eine zuvor exportierte JSON-Datei. Überschreibt vorhandene Antworten. Unterstützt altes Format (<code>answers</code>-Array) und neues Format (<code>germanQuestions</code>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">PRI-Bericht drucken / als PDF speichern</div>
+            <div class="step-text">Klick auf <strong>📋 PRI Bericht (eng.)</strong> öffnet das Berichtsdokument in einem neuen Browserfenster. Pop-ups müssen für die Seite erlaubt sein. Im Berichtsfenster den Browser-Druckdialog öffnen (<strong>Strg+P</strong>) und <strong>„Als PDF speichern"</strong> wählen. Das Format ist A4, optimiert für den Ausdruck.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Inhalt des PRI-Berichts</div>
+            <div class="step-text">Der Bericht enthält: <strong>Titel</strong> (Standard, Datum) · <strong>Executive Summary</strong> mit Statistik-Karten (Gesamt, beantwortet, Ja, Nein) und Fortschrittsbalken · <strong>alle Prüfbereiche</strong> mit jeder Frage auf Englisch, Antwort-Badge (✅ YES / ❌ NO / ⚪ N/A / ⭕ Not answered), Guidance-Text und Evidence-Kommentar · <strong>Footer</strong> mit Ersteller, Dokumenten-ID, Datum und Tool-Version.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Audit aus der Cloud laden</div>
+            <div class="step-text">Gespeicherte Supabase-Audits erscheinen auf der Startseite als <span class="badge b-grn">☁️ Supabase</span>-Karte. Klick auf <strong>📂 Laden</strong> stellt das vollständige Audit wieder her. Zum Löschen eines Cloud-Audits: <strong>🗑️ Löschen</strong>-Button auf der Karte (mit Sicherheitsabfrage).</td>
+          </div>
+        </div>
+      </div>
+
+      <div class="box box-gold" style="margin-top:14px;">
+        <div class="box-ico">📤</div>
+        <div><div class="box-title">Export als JSON (manuell)</div><div class="box-text">Über den Import-Button kann auch eine <strong>Exportfunktion</strong> angesprochen werden – die App speichert die Antworten beim Auto-Speichern im localStorage. Für einen manuellen JSON-Export kann die gespeicherte Datei über die Browser-Entwicklertools (<code>F12 → Application → Local Storage</code>) ausgelesen oder ein gespeichertes Audit über die Startseiten-Karte erneut geladen und als Ausgangspunkt für den Import auf einem anderen Gerät verwendet werden.</div></div>
+      </div>
+    </section>
+
+    <!-- D6 Cloud & Sync -->
+    <section class="section" id="sa-sync">
+      <div class="sec-header">
+        <div class="sec-num">D6</div>
+        <div><div class="sec-label">Self Audit</div><h2 class="sec-title">Cloud &amp; Synchronisation</h2></div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;max-width:680px;">Im Gegensatz zu App B (Operator Audit) synchronisiert der Self Audit <strong>nicht automatisch im Hintergrund</strong>. Die Cloud-Speicherung ist ein manueller, bewusster Schritt.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Supabase-Verbindung</div>
+            <div class="step-text">Beim Laden der App wird automatisch eine Verbindung zu Supabase hergestellt. Der Status (<strong>🟢 Verbunden / 🔴 Nicht verbunden</strong>) ist auf der Startseite sichtbar. Mit dem <strong>⟳</strong>-Button kann die Verbindung jederzeit manuell getestet werden. Die App funktioniert vollständig auch ohne Cloud-Verbindung (nur lokale Speicherung).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">☁️ In Supabase speichern</div>
+            <div class="step-text">Das Audit wird auf Knopfdruck manuell in der Tabelle <code>audits_v2</code> in Supabase gespeichert. Gespeichert werden: Audit-Typ, Titel, Standard, Erstelldatum, alle Fragen mit Antworten und Nachweisen, sowie eine Zusammenfassung (gesamt / beantwortet / Ja / Nein / N/A). Jeder Speichervorgang erstellt einen <strong>neuen Datensatz</strong> – vorhandene werden nicht überschrieben.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Lokales Audit löschen</div>
+            <div class="step-text">Lokale Audits können über die <strong>🗑️ Löschen</strong>-Schaltfläche auf der Startseitenkarte entfernt werden. Dies löscht ausschließlich den localStorage-Eintrag – Cloud-Daten in Supabase bleiben unberührt. Die Kachelfortschrittsanzeige wird danach auf <code>0%</code> zurückgesetzt.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Mehrere Geräte / Übergabe</div>
+            <div class="step-text">Um ein Audit von einem Gerät auf ein anderes zu übertragen: Audit auf Gerät 1 in Supabase speichern → auf Gerät 2 die Startseite neu laden → Supabase-Audit erscheint in der Liste → <strong>📂 Laden</strong> klicken. Alternativ: JSON-Datei exportieren und auf Gerät 2 über <strong>📂 Import</strong> einlesen.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box box-warn" style="margin-top:14px;">
+        <div class="box-ico">⚠️</div>
+        <div><div class="box-title">Kein automatischer Sync</div><div class="box-text">Der Self Audit synchronisiert <strong>nicht</strong> automatisch im Hintergrund. Änderungen auf einem Gerät werden nicht automatisch auf anderen Geräten sichtbar. Immer manuell in Supabase speichern und auf dem Zielgerät neu laden.</div></div>
+      </div>
+
+      <div class="box box-info" style="margin-top:10px;">
+        <div class="box-ico">🗄️</div>
+        <div><div class="box-title">Supabase-Tabelle: <code>audits_v2</code></div><div class="box-text">Alle Self-Audit-Datensätze werden in der Tabelle <code>audits_v2</code> gespeichert. Jeder Datensatz enthält: <code>name</code>, <code>audit_type</code>, <code>audit_title</code>, <code>standard</code>, <code>created_at</code>, <code>data</code> (vollständige Fragedaten), <code>summary</code> (Statistik). Die Anzeige auf der Startseite lädt alle Datensätze sortiert nach <code>created_at</code> absteigend.</div></div>
       </div>
     </section>
 
@@ -1333,3 +1818,4 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </script>
 </body>
 </html>
+
